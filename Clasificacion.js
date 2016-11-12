@@ -34,8 +34,9 @@ app.post(apiBaseURL+'/jugadores',function(req,res){
 app.delete(apiBaseURL+'/jugadores',function(req,res){
 	var jugador = req.body;
 
-	console.log("New POST");
-	res.json(jugadores);
+	console.log("New DELETE");
+	res.remove(jugador);
+    res.sendStatus(200);
 
 });
 
