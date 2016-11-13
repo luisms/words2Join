@@ -4,7 +4,7 @@
   "description": "Trabajo de la asignatura Sistemas de información para el máster de Ingeniería Informática de la Universidad de Sevilla.",
   "main": "Clasificacion.js",
   "engines": {
-    "node": "4.1.1"
+    "node": "6.9.1"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
