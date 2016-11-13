@@ -1,8 +1,11 @@
-{
+﻿{
   "name": "words2join",
   "version": "1.0.0",
   "description": "Trabajo de la asignatura Sistemas de información para el máster de Ingeniería Informática de la Universidad de Sevilla.",
   "main": "Clasificacion.js",
+  "engines": {
+    "node": "4.1.1"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "engines": "^0.4.0",
