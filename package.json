@@ -26,6 +26,6 @@
   },
   "scripts": {
     "start": "node Clasificacion.js"
-  }
+  },
   "homepage": "https://github.com/yoiiii121/words2Join#readme"
 }
