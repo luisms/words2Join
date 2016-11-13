@@ -13,7 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Clasificacion.js"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,6 @@
   "bugs": {
     "url": "https://github.com/yoiiii121/words2Join/issues"
   },
-  "scripts": {
-    "start": "node Clasificacion.js"
-  },
+    
   "homepage": "https://github.com/yoiiii121/words2Join#readme"
 }
