@@ -7,10 +7,16 @@ var apiBaseURL = "/api/v1";
 var friends; //Formato: {string nombre, boolean peticion}
 app.use(bodyParser.json());
 
+//Pagina principal
+app.get('/', function (req, res) {
+    console.log("NEW GET");
+    res.send("Pagina principal");
+});
+
 //Muestra todos los usuarios
 app.get(apiBaseURL + '/friends', function(req,res){
     console.log("NEW GET");
-    if (friends == null) {
+    if (friends == null || friends.length == 0) {
         res.send("No hay amigos agregados");
     } else {
         res.json(friends);
@@ -20,9 +26,13 @@ app.get(apiBaseURL + '/friends', function(req,res){
 //Muestra solo el usuario solicitado en la URL
 app.get(apiBaseURL + '/friends/:id', function (req, res) {
     console.log("NEW GET");
-    for (i = 0; i < friends.length; i++) {
-        if (friends[i].name == req.params.id) {
-            res.json(friends[i]);
+    if (friends == null || friends.length == 0) {
+        res.send("No hay amigos agregados");
+    } else {
+        for (i = 0; i < friends.length; i++) {
+            if (friends[i].name == req.params.id) {
+                res.json(friends[i]);
+            }
         }
     }
 });
