@@ -5,6 +5,7 @@ var app = express();
 var apiBaseURL = "/api/v1";
 
 var friends; //Formato: {string nombre, boolean peticion}
+app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
 //Pagina principal
@@ -79,6 +80,9 @@ app.delete(apiBaseURL + '/friends/:id', function (req, res) {
     res.sendStatus(200); 
 });
 
-app.listen(1000);
+//app.listen(1000);
+//console.log("Running");
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
-console.log("Running");
