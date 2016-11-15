@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var apiBaseURL = "/api/v1";
 
-var friends; //Formato: {string nombre, boolean peticion}
+var friends; //Formato: {string name, boolean request}
 app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
@@ -56,7 +56,7 @@ app.put(apiBaseURL + '/friends/:id', function (req, res) {
     console.log("NEW PUT");
     for (i = 0; i < friends.length; i++) {
         if (friends[i].name == req.params.id) {
-            friends[i].peticion = req.body.peticion;
+            friends[i].request = req.body.request;
         }
     }
     res.sendStatus(200);
