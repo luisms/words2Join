@@ -17,15 +17,15 @@ var jugador9 = { ranking: 9, puntuacion: 1111, jugador: "jugador 9"};
 var jugador10 = { ranking: 10, puntuacion: 0000, jugador: "jugador 10"};
 //Inputing values in a list
 var jugadores = [jugador1,jugador2,jugador3,jugador4,jugador5,jugador6,jugador7,jugador8,jugador9,jugador10];
-app.set('port', (proccess.env.PORT || 5000));
+app.set('port', (process.env.PORT || 5000));
 app.use(bodyparser.json());
 
 //Geting all players
-/*app.get(apiBaseURL+'/jugadores', function (req,res)
+app.get(apiBaseURL+'/jugadores', function (req,res)
 {
 	console.log("New GET");
 	res.json(jugadores);
-});*/
+});
 
 //Geting the ID of a single player
 app.get(apiBaseURL+'/jugadores/:id', function (req,res)
@@ -95,8 +95,8 @@ app.delete(apiBaseURL+'/jugadores/:id',function(req,res){
 
 //app.listen(1000);
 var port = app.get('port');
-app.listen(port,function()){
+app.listen(port,function(){
 	console.log('Node app is running on port', port);
-}
+});
 
 console.log("Running...");
