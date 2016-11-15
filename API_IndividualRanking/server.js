@@ -21,6 +21,7 @@ var individualGame10 = {idRanking: 10, idUser: 1, user: "Pablo", score: "690"};
 
 //init individual games array var:
 var individualRanking = [individualGame1,individualGame2,individualGame3,individualGame4,individualGame5,individualGame6,individualGame7,individualGame8,individualGame9,individualGame10];
+app.set('port',(process.env.PORT || 2000));
 app.use(bodyParser.json());
 
 //To get all individual ranking all players:
@@ -88,5 +89,7 @@ app.delete(apiBaseURL + '/individualRanking/:idRanking', function (req, res) {
 });
 
 
-app.listen(2000);
+app.listen(app.get('port'), function(){
+	console.log('Node app is running on port', app.get('port'));
+});
 console.log("Running...");
