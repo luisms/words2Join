@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 //Pagina principal
 app.get('/', function (req, res) {
     console.log("NEW GET");
-    res.send("Pagina principal");
+    res.send("Landing Page");
 });
 
 //Muestra todos los usuarios
