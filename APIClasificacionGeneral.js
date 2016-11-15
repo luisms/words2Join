@@ -2,55 +2,99 @@ var express = require("express");
 var bodyparser = require("body-parser");
 var app = express();
 var apiBaseURL = "/api/v1";
+var finded = false;
 
 //Inputing datas
-var jugador1 = { ranking: 1, puntuacion: 9999, jugador: "jugador 1"};
-var jugador2 = { ranking: 2, puntuacion: 8888, jugador: "jugador 2"};
-var jugador3 = { ranking: 3, puntuacion: 7777, jugador: "jugador 3"};
-var jugador4 = { ranking: 4, puntuacion: 6666, jugador: "jugador 4"};
-var jugador5 = { ranking: 5, puntuacion: 5555, jugador: "jugador 5"};
-var jugador6 = { ranking: 6, puntuacion: 4444, jugador: "jugador 6"};
-var jugador7 = { ranking: 7, puntuacion: 3333, jugador: "jugador 7"};
-var jugador8 = { ranking: 8, puntuacion: 2222, jugador: "jugador 8"};
-var jugador9 = { ranking: 9, puntuacion: 1111, jugador: "jugador 9"};
-var jugador10 = { ranking: 10, puntuacion: 0000, jugador: "jugador 10"};
+var player1 = { ranking: 1, score: 9999, player: "player1"};
+var player2 = { ranking: 2, score: 8888, player: "player2"};
+var player3 = { ranking: 3, score: 7777, player: "player3"};
+var player4 = { ranking: 4, score: 6666, player: "player4"};
+var player5 = { ranking: 5, score: 5555, player: "player5"};
+var player6 = { ranking: 6, score: 4444, player: "player6"};
+var player7 = { ranking: 7, score: 3333, player: "player7"};
+var player8 = { ranking: 8, score: 2222, player: "player8"};
+var player9 = { ranking: 9, score: 1111, player: "player9"};
+var player10 = { ranking: 10, score: 0000, player: "player10"};
 //Inputing values in a list
-var jugadores = [jugador1,jugador2,jugador3,jugador4,jugador5,jugador6,jugador7,jugador8,jugador9,jugador10];
-
+var players = [player1,player2,player3,player4,player5,player6,player7,player8,player9,player10];
+app.set('port', (process.env.PORT || 5000));
 app.use(bodyparser.json());
 
 //Geting all players
-app.get(apiBaseURL+'/jugadores', function (req,res)
+app.get(apiBaseURL+'/players', function (req,res)
 {
 	console.log("New GET");
-	res.json(jugadores);
+	res.json(players);
+});
+
+//Geting the ID of a single player
+app.get(apiBaseURL+'/players/:id', function (req,res)
+{
+	console.log("New ID GET");
+	i = 0;
+	finded = false;
+	while (i < players.length && !finded) {
+		if(players[i].player == req.params.id){
+			res.json(players[i]);
+			finded = true;
+		}
+		i++;
+	}
 });
 
 //Posting all players to be writen
-app.post(apiBaseURL+'/jugadores', function (req,res){
-	var jugador = req.body;
+app.post(apiBaseURL+'/players', function (req,res){
+	var player = req.body;
 
 	console.log("New POST");
-	console.log(" Data: " + jugador);
-	jugadores.push(jugador);
+	console.log(" Data: " + player);
+	players.push(player);
 	res.sendStatus(200);
 });
 
+//Putting the ID of a single player
+app.put(apiBaseURL+'/players/:id',function(req,res){
+	console.log("New ID PUT");
+	
+	i = 0;
+	finded = false;
+	while(i < players.length && !finded){
+		if(players[i].player == req.params.id){
+			players[i].ranking = req.body.ranking;
+			players[i].score = req.body.score;
+			finded = true;
+		}
+		i++;
+	}
+
+});
+
 //Deleting all players
-app.delete(apiBaseURL+'/jugadores', function (req,res){
+app.delete(apiBaseURL+'/players', function (req,res){
 	console.log(" new DELETE");
+    for (i = 0; i < players.length; i++) {
 
-    for (i = 0; i < jugadores.length; i++) {
-
-        if (jugadores[i].name == req.body.name) {
-            jugadores.splice(i);
+        if (players[i].player == req.body.player) {
+            players.splice(i);
         }
     } 
     res.sendStatus(200); 
 });
 
+//Deleting the ID of a single player
+app.delete(apiBaseURL+'/players/:id',function(req,res){
+	console.log(" new ID DELETE");	
+	for (i = 0; i < players.length; i++) {
+        if (players[i].player == req.params.id) {
+            players.splice(i,1);
+        }
+    } 
+});
 
-//Listening port 1000
-app.listen(1000);
+//app.listen(1000);
+var port = app.get('port');
+app.listen(port,function(){
+	console.log('Node app is running on port', port);
+});
 
 console.log("Running...");
