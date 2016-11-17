@@ -1,13 +1,16 @@
 {
-  "name": "contactlist",
+  "name": "words2join",
   "version": "0.0.0",
   "description": "",
+  "engines": {
+    "node": "5.9.1"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "jmiguel",
+  "author": "MII-SI grupo 2",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
