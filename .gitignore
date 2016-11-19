@@ -1,2 +1,6 @@
 #Folders
-/API_individualRanking/*
+/API Individual Ranking/*
+.gitignore
+/node_modules/*
+README.md
+package.json
