@@ -9,7 +9,7 @@ module.exports = function (app, apiBaseURL) {
     var individualGame6 = { idRanking: 6, idUser: 6, user: "Rocco", score: "1090" };
     var individualGame7 = { idRanking: 7, idUser: 7, user: "Alex", score: "1075" };
     var individualGame8 = { idRanking: 8, idUser: 1, user: "Pablo", score: "990" };
-    var individualGame9 = { idRanking: 9, idUser: 8, user: "Fermín", score: "875" };
+    var individualGame9 = { idRanking: 9, idUser: 8, user: "FermÃ­n", score: "875" };
     var individualGame10 = { idRanking: 10, idUser: 1, user: "Pablo", score: "690" };
     //init individual games array var:
     var individualRanking = [individualGame1, individualGame2, individualGame3, individualGame4,
