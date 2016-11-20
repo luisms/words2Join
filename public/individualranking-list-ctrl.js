@@ -15,8 +15,8 @@ angular.module("IndividualRankinglistApp")
 
         });
     }
-    $scope.deleteContact = function(name){
-        console.log($scope.newindividualRankings);
+    $scope.deleteIndividualRanking = function(name){
+        console.log(name);
         $http.delete("/api/v1/individualrankings/"+name).success(function(){
         refresh();
 

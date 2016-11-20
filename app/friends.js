@@ -1,259 +1,174 @@
 module.exports = function (app, apiBaseURL) {
 
-   //The requiired's files;
-var express= require('express');
-var path = require('path');
-var dataStore =require('nedb');
-var dbFileName = path.join(__dirname,'individualrankings.json');
-var bodyParser = require('body-parser');
+    //Inputing datas
+
+    
+
+    var dateNow = new Date();
+
+    var individualranking1 = { ranking: 1, score: 9999, player: "player1", date:dateNow.toISOString()};
+
+    var individualranking2 = { ranking: 2, score: 8888, player: "player2", date:dateNow.toISOString()};
+
+    var individualranking3 = { ranking: 3, score: 7777, player: "player3", date:dateNow.toISOString()};
+
+    var individualranking4 = { ranking: 4, score: 6666, player: "player4", date:dateNow.toISOString()};
+
+    var individualranking5 = { ranking: 5, score: 5555, player: "player5", date:dateNow.toISOString()};
+
+    var individualranking6 = { ranking: 6, score: 4444, player: "player6", date:dateNow.toISOString()};
+
+    var individualranking7 = { ranking: 7, score: 3333, player: "player7", date:dateNow.toISOString()};
+
+    var individualranking8 = { ranking: 8, score: 2222, player: "player8", date:dateNow.toISOString()};
+
+    var individualranking9 = { ranking: 9, score: 1111, player: "player9", date:dateNow.toISOString()};
+
+    var individualranking10 = { ranking: 10, score: 0000, player: "player10", date:dateNow.toISOString()};
+
+    //Inputing values in a list
+
+    var individualrankings = [individualranking1, individualranking2, individualranking3, individualranking4, individualranking5, individualranking6, individualranking7, individualranking8, individualranking9, individualranking10];
 
 
-//Init api and db vars:
 
-var app = express();
+       //Geting all players
 
-//var apiBaseURL = "/api/v1";
+    app.get(apiBaseURL + '/individualrankings', function (req, res) {
 
-var db = new dataStore({
+        console.log("New GET");
 
-        filename: dbFileName,
+        res.json(individualrankings);
 
-        autoload: true
+    });
+
+
+
+    //Geting the ID of a single individualranking
+
+    app.get(apiBaseURL + '/individualrankings/:id', function (req, res) {
+
+        console.log("New ID GET");
+
+        i = 0;
+
+        finded = false;
+
+        while (i < individualrankings.length && !finded) {
+
+            if (individualrankings[i].player == req.params.id) {
+
+                res.json(individualrankings[i]);
+
+                finded = true;
+
+            }
+
+            i++;
+
+        }
 
     });
 
 
 
-console.log("DB initialized");
+    //Posting all players to be writen
+
+    app.post(apiBaseURL + '/individualrankings', function (req, res) {
+
+        var individualranking = req.body;
 
 
 
-var dateNow = new Date();
+        console.log("New POST");
 
-//Init individual individualrankings vars:
+        console.log(" Data: " + individualranking);
 
-//typedef var individualrankingX {idRanking, idUser, nameUserm, ScoreGame}
+        individualrankings.push(individualranking);
 
-var individualranking1 = {ranking: 1, player: "Pablo", score: "1975", date: dateNow.toISOString()};
-
-var individualranking2 = {ranking: 2, player: "Paco", score: "1290", date: dateNow.toISOString()};
-
-var individualranking3 = {ranking: 3, player: "Macarena", score: "1275", date: dateNow.toISOString()};
-
-var individualranking4 = {ranking: 4, player: "Rogelia", score: "1200", date: dateNow.toISOString()};
-
-var individualranking5 = {ranking: 5, player: "Pamela", score: "1100", date: dateNow.toISOString()};
-
-var individualranking6 = {ranking: 6, player: "Rocco", score: "1090", date: dateNow.toISOString()};
-
-var individualranking7 = {ranking: 7, player: "Alex", score: "1075", date: dateNow.toISOString()};
-
-var individualranking8 = {ranking: 8, player: "Pablo", score: "990", date: dateNow.toISOString()};
-
-var individualranking9 = {ranking: 9, player: "Fermín", score: "875", date: dateNow.toISOString()};
-
-var individualranking10 = {ranking: 10, player: "Pablo", score: "690", date: dateNow.toISOString()};
-
-
-
-//init individual individualrankings array var:
-
-var individualrankings = [individualranking1,individualranking2,individualranking3,individualranking4,individualranking5,individualranking6,individualranking7,individualranking8,individualranking9,individualranking10];
-
-//Init db with data's example:
-
-db.find({}, (err,players)=>{
-
-    if(players.length == 0){
-
-        db.insert(individualrankings);
-
-        console.log("EMPTY DB! Inserted'"+individualrankings.length+"'default players");
-
-    }else{
-
-        console.log("Loaded DB with "+players.length+" players");
-
-    }
-
-});
-
-app.set('port',(process.env.PORT || 10000));
-
-app.use(bodyParser.json());
-
-
-
-//To get all individual individualrankings all players:
-
-app.get(apiBaseURL+'/individualrankings',function(req,res){
-
-	console.log("GET to obtain all players's ranking");
-
-	db.find({},(err,individualrankings)=>{
-
-        if (err){
-
-            res.sendStatus(500);
-
-        }else{ 
-
-            res.send(individualrankings);
-
-        }
+        res.sendStatus(200);
 
     });
 
-});
+
+
+    //Putting the ID of a single player
+
+    app.put(apiBaseURL + '/individualrankings/:id', function (req, res) {
+
+        console.log("New ID PUT");
 
 
 
-//To get all individual individualrankings one player:
+        i = 0;
 
-app.get(apiBaseURL+'/individualrankings/:player',function(req,res){
+        finded = false;
 
-	console.log("GET to obtain one players's individualrankings");
+        while (i < individualrankings.length && !finded) {
 
-	db.find({},(err,individualrankings)=>{
+            if (individualrankings[i].player == req.params.id) {
 
-		var individualrankingsByPlayer = new Array();
+                individualrankings[i].ranking = req.body.ranking;
 
-        if (err){
+                individualrankings[i].score = req.body.score;
 
-            res.sendStatus(500);
+                individualrankings[i].date = req.body.date;
 
-        }else{ 
+                finded = true;
 
-        	individualrankings.forEach(function(element){
+            }
 
-				if (element.player == req.params.player) 
-
-		            individualrankingsByPlayer.push(element);
-
-			});  
-
-			if(individualrankingsByPlayer != null)
-
-				res.send(individualrankingsByPlayer);
-
-			else
-
-				res.sendStatus(200);
+            i++;
 
         }
+
+res.sendStatus(200);
 
     });
 
-});
+
+
+    //Deleting all players
+
+    app.delete(apiBaseURL + '/individualrankings', function (req, res) {
+
+        console.log(" new DELETE");
+
+        for (i = 0; i < individualrankings.length; i++) {
 
 
 
-//To add individual game at individualrankings:
+            if (individualrankings[i].player == req.body.player) {
 
-app.post(apiBaseURL+'/individualrankings',function(req,res){
+                individualrankings.splice(i);
 
-	console.log("POST to add individual game");
-
-	var game = req.body;
-
-	if (game == null) {
-
-        console.log("No data sent -> null request at post or no name's player");
-
-    } else {
-
-    	db.insert(game);
-
-    	console.log("Game Inserted:"+JSON.stringify(game, null, ' '));  
-
-	}
-
-	res.sendStatus(200);
-
-});
-
-
-
-
-
-//To update individual game at individualrankings:
-
-app.put(apiBaseURL+'/individualrankings/:ranking',(req,res)=>{
-
-	var ranking = req.params.ranking;
-
-    var individualranking = req.body;
-
-
-
-    console.log("New PUT request over /individualrankings/"+ranking);
-
-    console.log("Data: "+JSON.stringify(individualranking,2));
-
-
-
-    if(ranking != individualranking.ranking){
-
-        res.sendStatus(409);
-
-        return;
-
-    }
-
-
-
-    db.update({ranking: parseInt(ranking)},individualranking,(err,numUpdates)=>{
-
-        if (err){
-
-            res.sendStatus(500);
-
-        }else{ 
-
-            console.log("Updated "+numUpdates+" objects");
-
-            res.sendStatus(200);
+            }
 
         }
 
-    })
+        res.sendStatus(200);
 
-});
-
-
-
-//To delete one individual game from individualrankings:
+    });
 
 
 
-app.delete(apiBaseURL+"/individualrankings/:ranking",(req,res)=>{
+    //Deleting the ID of a single player
 
+    app.delete(apiBaseURL + '/individualrankings/:id', function (req, res) {
 
+        console.log(" new ID DELETE");
 
-    var ranking = req.params.ranking;
+        for (i = 0; i < individualrankings.length; i++) {
 
-    console.log("New DELETE request over /contact/"+ranking);
+            if (individualrankings[i].player == req.params.id) {
 
+                individualrankings.splice(i, 1);
 
-
-    db.remove({ranking : parseInt(ranking)},{},(err,numRemoved)=>{
-
-        if (err){
-
-            res.sendStatus(500);
-
-        }else{ 
-
-            console.log("Deleted "+numRemoved+" objects");
-
-            res.sendStatus(200);
+            }
 
         }
+        res.sendStatus(200);
 
-    })
-
-});
-
-
+    });
 
 };

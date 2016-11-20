@@ -10,12 +10,12 @@
                  </thead>
                 <tbody>
                     <tr>
-                        <td><input class="form-control" ng-model="inidividualranking.ranking"> </td>
-                        <td><a href="/#/individualrankings/{{individualranking.player}}"></a> </td>
-                        <td><input class="form-control" ng-model="inidividualranking.score"> </td>
-                        <td><input class="form-control" ng-model="inidividualranking.date"> </td>
+                        <td><input class="form-control" ng-model="individualranking.ranking"> </td>
+                        <td><a href="/#/individualrankings/{{individualranking.player}}">{{individualranking.player}}</a> </td>
+                        <td><input class="form-control" ng-model="individualranking.score"> </td>
+                        <td><input class="form-control" ng-model="individualranking.date"> </td>
                         
-                        <td><button class="btn btn-primary" ng-click="updateIndividualRanking()">Update</button></td>
+                        <td><button class="btn btn-primary" ng-click="updateIndividualRanking(individualranking.player)">Update</button></td>
                     </tr>
                
 
