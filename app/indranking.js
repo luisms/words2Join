@@ -15,72 +15,129 @@ module.exports = function (app, apiBaseURL) {
     var individualRanking = [individualGame1, individualGame2, individualGame3, individualGame4,
         individualGame5, individualGame6, individualGame7, individualGame8, individualGame9, individualGame10];
 
-    //Geting all players
-    app.get(apiBaseURL + '/players', function (req, res) {
-        console.log("New GET");
-        res.json(players);
+      //To get all individual ranking all players:
+
+    app.get(apiBaseURL + '/individualRanking', function (req, resp) {
+
+        console.log("GET to obtain all players's ranking");
+
+        resp.json(individualRanking);
+
     });
 
-    //Geting the ID of a single player
-    app.get(apiBaseURL + '/players/:id', function (req, res) {
-        console.log("New ID GET");
-        i = 0;
-        finded = false;
-        while (i < players.length && !finded) {
-            if (players[i].player == req.params.id) {
-                res.json(players[i]);
-                finded = true;
-            }
-            i++;
+
+
+    //To get all individual ranking one player:
+
+    app.get(apiBaseURL + '/individualRanking/:idUser', function (req, resp) {
+
+        console.log("GET to obtain one players's ranking");
+
+        var indUserRanking = new Array();
+
+        individualRanking.forEach(function (element) {
+
+            //console.log(req.params.idUser+ ' ' + element);
+
+            if (element.idUser == req.params.idUser)
+
+                indUserRanking.push(element);
+
+        });
+
+        if (indUserRanking != null)
+
+            resp.json(indUserRanking);
+
+        else
+
+            resp.sendStatus(200);
+
+    });
+
+
+
+    //To add individual games at ranking:
+
+    app.post(apiBaseURL + '/individualRanking', function (req, resp) {
+
+        console.log("POST to add individual ranking");
+
+        var indGame = req.body;
+
+        console.log(JSON.stringify(indGame, null, ' '));
+
+        if (individualRanking == null) {
+
+            individualRanking = new Array(indGame);
+
+        } else {
+
+            individualRanking.push(indGame);
+
         }
+
+        resp.sendStatus(200);
+
     });
 
-    //Posting all players to be writen
-    app.post(apiBaseURL + '/players', function (req, res) {
-        var player = req.body;
 
-        console.log("New POST");
-        console.log(" Data: " + player);
-        players.push(player);
+
+    //To update individual games at ranking:
+
+    app.put(apiBaseURL + '/individualRanking/', function (req, resp) {
+
+        console.log("PUT to update individual ranking");
+
+        if (individualRanking == null) {
+
+            console.log("No hay partidas en la lista");
+
+        } else {
+
+            for (i = 0; i < individualRanking.length; i++) {
+
+                if (individualRanking[i].idRanking == req.body.idRanking) {
+
+                    individualRanking[i].idUser = req.body.idUser;
+
+                    individualRanking[i].user = req.body.user;
+
+                    individualRanking[i].score = req.body.score;
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+        console.log(individualRanking);
+
+
+
+        resp.sendStatus(200);
+
+    });
+
+
+
+    //To delete one individual game from ranking:
+
+    app.delete(apiBaseURL + '/individualRanking/:idRanking', function (req, res) {
+
+        console.log("Delete individual game from individualRanking");
+
+        var removed = individualRanking.filter(function (element) {
+
+            return element.idRanking != req.params.idRanking;
+
+        });
+
+        console.log(JSON.stringify(removed, null, ' '));
+
         res.sendStatus(200);
-    });
 
-    //Putting the ID of a single player
-    app.put(apiBaseURL + '/players/:id', function (req, res) {
-        console.log("New ID PUT");
-
-        i = 0;
-        finded = false;
-        while (i < players.length && !finded) {
-            if (players[i].player == req.params.id) {
-                players[i].ranking = req.body.ranking;
-                players[i].score = req.body.score;
-                finded = true;
-            }
-            i++;
-        }
-
-    });
-
-    //Deleting all players
-    app.delete(apiBaseURL + '/players', function (req, res) {
-        console.log(" new DELETE");
-        for (i = 0; i < players.length; i++) {
-
-            if (players[i].player == req.body.player) {
-                players.splice(i);
-            }
-        }
-        res.sendStatus(200);
-    });
-
-    //Deleting the ID of a single player
-    app.delete(apiBaseURL + '/players/:id', function (req, res) {
-        console.log(" new ID DELETE");
-        for (i = 0; i < players.length; i++) {
-            if (players[i].player == req.params.id) {
-                players.splice(i, 1);
-            }
-        }
     });
 };
