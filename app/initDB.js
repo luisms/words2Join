@@ -1,0 +1,65 @@
+module.exports.initDBIndGame = function (path, dataStore) {
+    var dbFileName = path.join(__dirname, 'individualGames.json');
+    var dbIndGame = new dataStore({
+        filename: dbFileName,
+        autoload: true
+    });
+
+    //typedef var individualGameX {ranking, player, score, date}
+    var dateNow = new Date();
+    var individualGame1 = { ranking: 1, player: "Pablo", score: "1975", date: dateNow.toISOString() };
+    var individualGame2 = { ranking: 2, player: "Paco", score: "1290", date: dateNow.toISOString() };
+    var individualGame3 = { ranking: 3, player: "Macarena", score: "1275", date: dateNow.toISOString() };
+    var individualGame4 = { ranking: 4, player: "Rogelia", score: "1200", date: dateNow.toISOString() };
+    var individualGame5 = { ranking: 5, player: "Pamela", score: "1100", date: dateNow.toISOString() };
+    var individualGame6 = { ranking: 6, player: "Rocco", score: "1090", date: dateNow.toISOString() };
+    var individualGame7 = { ranking: 7, player: "Alex", score: "1075", date: dateNow.toISOString() };
+    var individualGame8 = { ranking: 8, player: "Pablo", score: "990", date: dateNow.toISOString() };
+    var individualGame9 = { ranking: 9, player: "Fermín", score: "875", date: dateNow.toISOString() };
+    var individualGame10 = { ranking: 10, player: "Pablo", score: "690", date: dateNow.toISOString() };
+    var individualGames = [individualGame1, individualGame2, individualGame3, individualGame4,
+        individualGame5, individualGame6, individualGame7, individualGame8, individualGame9, individualGame10];
+
+    dbIndGame.find({}, (err, players) => {
+        if (players.length == 0) {
+            dbIndGame.insert(individualGames);
+            console.log("EMPTY Individual Game DB! Inserted'" + individualGames.length + "'default players");
+        } else {
+            console.log("Loaded DB with " + players.length + " players");
+        }
+    });
+    return dbIndGame;
+}
+
+module.exports.initDBFriends = function (path, dataStore) {
+    var dbFileName = path.join(__dirname, 'friends.json');
+    var dbFriend = new dataStore({
+        filename: dbFileName,
+        autoload: true
+    });
+
+  /*Format: {string player, "friends":[ {"player":"John", "score": integer, "date": formato fecha, "ranking": integer},
+                                        {"player":"John", "score": integer, "date": formato fecha, "ranking": integer},
+                                        {"player":"John", "score": integer, "date": formato fecha, "ranking": integer}]} */
+    var dateNow = new Date();
+    var friend = {
+        "player": "jose",
+        "friends": [{
+            "player": "John",
+            "score": 1234,
+            "date": "2012-04-23T18:25:43.511Z",
+            "ranking": 98
+        }]
+    };
+    var friends = [friend];
+
+    dbFriend.find({}, (err, players) => {
+        if (players.length == 0) {
+            dbFriend.insert(friends);
+            console.log("EMPTY friends DB! Inserted'" + friends.length + "'default players");
+        } else {
+            console.log("Loaded DB with " + players.length + " players");
+        }
+    });
+    return dbFriend;
+}

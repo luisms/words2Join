@@ -1,174 +1,121 @@
-module.exports = function (app, apiBaseURL) {
 
-    //Inputing datas
+module.exports = function (app, apiBaseURL, db) {
 
-    
-
-    var dateNow = new Date();
-
-    var individualranking1 = { ranking: 1, score: 9999, player: "player1", date:dateNow.toISOString()};
-
-    var individualranking2 = { ranking: 2, score: 8888, player: "player2", date:dateNow.toISOString()};
-
-    var individualranking3 = { ranking: 3, score: 7777, player: "player3", date:dateNow.toISOString()};
-
-    var individualranking4 = { ranking: 4, score: 6666, player: "player4", date:dateNow.toISOString()};
-
-    var individualranking5 = { ranking: 5, score: 5555, player: "player5", date:dateNow.toISOString()};
-
-    var individualranking6 = { ranking: 6, score: 4444, player: "player6", date:dateNow.toISOString()};
-
-    var individualranking7 = { ranking: 7, score: 3333, player: "player7", date:dateNow.toISOString()};
-
-    var individualranking8 = { ranking: 8, score: 2222, player: "player8", date:dateNow.toISOString()};
-
-    var individualranking9 = { ranking: 9, score: 1111, player: "player9", date:dateNow.toISOString()};
-
-    var individualranking10 = { ranking: 10, score: 0000, player: "player10", date:dateNow.toISOString()};
-
-    //Inputing values in a list
-
-    var individualrankings = [individualranking1, individualranking2, individualranking3, individualranking4, individualranking5, individualranking6, individualranking7, individualranking8, individualranking9, individualranking10];
-
-
-
-       //Geting all players
-
-    app.get(apiBaseURL + '/individualrankings', function (req, res) {
-
-        console.log("New GET");
-
-        res.json(individualrankings);
-
-    });
-
-
-
-    //Geting the ID of a single individualranking
-
-    app.get(apiBaseURL + '/individualrankings/:id', function (req, res) {
-
-        console.log("New ID GET");
-
-        i = 0;
-
-        finded = false;
-
-        while (i < individualrankings.length && !finded) {
-
-            if (individualrankings[i].player == req.params.id) {
-
-                res.json(individualrankings[i]);
-
-                finded = true;
-
+    //Muestra todos los usuarios
+    app.get(apiBaseURL + '/friends', function (req, res) {
+        console.log("NEW GET friends");
+        db.find({}, (err, friends) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                res.send(friends);
             }
-
-            i++;
-
-        }
-
+        });
     });
 
-
-
-    //Posting all players to be writen
-
-    app.post(apiBaseURL + '/individualrankings', function (req, res) {
-
-        var individualranking = req.body;
-
-
-
-        console.log("New POST");
-
-        console.log(" Data: " + individualranking);
-
-        individualrankings.push(individualranking);
-
-        res.sendStatus(200);
-
-    });
-
-
-
-    //Putting the ID of a single player
-
-    app.put(apiBaseURL + '/individualrankings/:id', function (req, res) {
-
-        console.log("New ID PUT");
-
-
-
-        i = 0;
-
-        finded = false;
-
-        while (i < individualrankings.length && !finded) {
-
-            if (individualrankings[i].player == req.params.id) {
-
-                individualrankings[i].ranking = req.body.ranking;
-
-                individualrankings[i].score = req.body.score;
-
-                individualrankings[i].date = req.body.date;
-
-                finded = true;
-
+    //Muestra solo el usuario solicitado en la URL
+    app.get(apiBaseURL + '/friends/:id', function (req, res) {
+        console.log("NEW GET user's friends");
+        db.find({}, (err, friends) => {
+            var friend = new Array();
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                friends.forEach(function (element) {
+                    if (element.player == req.params.id)
+                        friend.push(element);
+                });
+                if (friend != null) {
+                    res.send(friend);
+                } else if (friends == null || friends.length == 0) {
+                    res.send("No hay amigos agregados");
+                } else {
+                    res.sendStatus(200);
+                }
             }
-
-            i++;
-
-        }
-
-res.sendStatus(200);
-
+        });
     });
 
+    //Crea una relacion de amistad
+    app.post(apiBaseURL + '/friends', function (req, res) {
+        console.log("NEW POST friends");
+        var friend = req.body;
+        var exist = false;
+        if (friend == null) {
+            console.log("No data sent -> null request at post or no name's player");
+        } else {
+            db.find({}, (err, friends) => {
+                if (err) {
+                    res.sendStatus(500);
+                } else {
+                    for (i = 0; i < friends.length; i++) {
+                        if (friend.player == friends[i].player) {
+                            res.send("Ya existe un jugador con ese nombre.");
+                            exist = true;
+                            break;
+                        }
+                    }
+                    if (exist == false) {
+                        db.insert(friend);
+                        console.log("Friend Inserted:" + JSON.stringify(friend, null, ' '));
+                        res.sendStatus(200);
+                    }
+                }
+            });
+        }
+    });
 
-
-    //Deleting all players
-
-    app.delete(apiBaseURL + '/individualrankings', function (req, res) {
-
-        console.log(" new DELETE");
-
-        for (i = 0; i < individualrankings.length; i++) {
-
-
-
-            if (individualrankings[i].player == req.body.player) {
-
-                individualrankings.splice(i);
-
+    //A partir de un nombre de usuario, actualiza su lista de amigos
+    app.put(apiBaseURL + '/friends/:id', function (req, res) {
+        var player = req.params.id;
+        console.log("NEW PUT over " + player);
+        db.update({ player: player }, { $addToSet: { friends: req.body } }, (err, numUpdates) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                console.log("Updated " + numUpdates + " objects");
+                res.sendStatus(200);
             }
-
-        }
-
-        res.sendStatus(200);
-
+        })
     });
 
+    //Borrado total
+    app.delete(apiBaseURL + '/friends', function (req, res) {
+        console.log("NEW DELETE all friends");
 
-
-    //Deleting the ID of a single player
-
-    app.delete(apiBaseURL + '/individualrankings/:id', function (req, res) {
-
-        console.log(" new ID DELETE");
-
-        for (i = 0; i < individualrankings.length; i++) {
-
-            if (individualrankings[i].player == req.params.id) {
-
-                individualrankings.splice(i, 1);
-
+        db.remove({}, { multi: true }, function (err, numRemoved) {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                console.log("Deleted " + numRemoved + " objects.");
+                res.sendStatus(200);
             }
-
-        }
-        res.sendStatus(200);
-
+        })
     });
 
+    //Borrado individual
+    app.delete(apiBaseURL + '/friends/:id', function (req, res) {
+        console.log("NEW DELETE one player");
+        db.remove({ player: req.params.id }, {}, (err, numRemoved) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                console.log("Deleted " + numRemoved + " objects");
+                res.sendStatus(200);
+            }
+        })
+    });
+
+    //Borrado individual de amigo
+    app.delete(apiBaseURL + '/friends/:id/:friend', function (req, res) {
+        console.log("NEW DELETE user's friend");
+        db.update({ player: req.params.id }, { $pull: { friends:{player: req.params.friend} } },(err, numRemoved) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                console.log("Deleted " + numRemoved + " objects");
+                res.sendStatus(200);
+            }
+        });
+    });
 };
