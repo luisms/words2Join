@@ -1,0 +1,33 @@
+
+             <h1> Global Ranking List </h1>
+            <table class ="table">
+                <thead>
+                <tr>
+                    <th>Ranking</th>
+                    <th>Player</th>
+                    <th>Score</th>   
+                    <th>Date</th>
+                    <!--<th>Action</th>--> 
+                </tr>    
+                 </thead>
+                <tbody>
+                    <!--<tr>
+                        <td><input class="form-control" ng-model="newindividualranking.ranking"> </td>
+                        <td><input class="form-control" ng-model="newindividualranking.player"> </td>
+                        <td><input class="form-control" ng-model="newindividualranking.score"> </td>
+                        <td><input class="form-control" ng-model="newindividualranking.date"> </td>
+                        <td><button class="btn btn-primary" ng-click="addIndividualRanking()">Add</button></td>
+                    </tr>-->
+               
+
+                    <tr ng-repeat="individualranking in individualrankings"> 
+                    <td>{{individualranking.ranking}}</td>
+                    <!--<td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a> </td>-->
+                    <td>{{individualranking.player}}</td>
+                    <td>{{individualranking.score}}</td>
+                    <td>{{individualranking.date}}</td>
+                   <!--<td><button class="btn btn-danger" ng-click="deleteIndividualRanking(individualranking.player)">Delete</button></td>-->
+                </tr>
+                </tbody>
+            </table>
+      

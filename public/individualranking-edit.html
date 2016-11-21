@@ -1,4 +1,4 @@
-     <h1> Edit individual ranking </h1>
+     <h1> Individual ranking </h1>
             <table class ="table">
                 <thead>
                 <tr>
@@ -9,16 +9,17 @@
                 </tr>    
                  </thead>
                 <tbody>
-                    <tr>
-                        <td><input class="form-control" ng-model="contact.ranking"> </td>
-                        <td><input class="form-control" ng-model="contact.player"> </td>
-                        <td><input class="form-control" ng-model="contact.score"> </td>
-                        <td><input class="form-control" ng-model="contact.date"> </td>
-                        <td><button class="btn btn-primary" ng-click="updateContact()">Update</button></td>
+                    <tr ng-repeat="individualranking in individualrankings">
+                       <td>{{individualranking.ranking}}</td>
+                    <!--<td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a> </td>-->
+                    <td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a></td>
+                    <td>{{individualranking.score}}</td>
+                    <td>{{individualranking.date}}</td>
+                        
+                        <!--<td><button class="btn btn-primary" ng-click="updateIndividualRanking(individualranking.player)">Update</button></td>-->
                     </tr>
                
 
-                       </tr>
                 </tbody>
             </table>
       

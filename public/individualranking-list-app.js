@@ -4,9 +4,9 @@ angular.module("IndividualRankinglistApp",["ngRoute"])
         $routeProvider
         .when("/",{
             controller:"IndividualRankingListCtrl",
-            templateUrl:"individualranking-list.html"
+            templateUrl:"globalranking-list.html"
         })
-        .when("/individualrankings/:name",{
+        .when("/individualRankings/:name",{
             controller:"IndividualRankingEditCtrl",
             templateUrl:"individualranking-edit.html"
         })
