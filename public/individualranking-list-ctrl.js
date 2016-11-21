@@ -2,7 +2,7 @@ angular.module("IndividualRankinglistApp")
 .controller("IndividualRankingListCtrl",function($scope,$http){
     console.log("IndividualRangs List controller");
     function refresh(){
-    $http.get("/api/v1/individualrankings").success(function(individualrankings){
+    $http.get("/api/v1/individualRankings").success(function(individualrankings){
         $scope.individualrankings=individualrankings;
 
 
@@ -10,14 +10,14 @@ angular.module("IndividualRankinglistApp")
 }
     $scope.addIndividualRanking = function(){
         console.log($scope.newindividualrankings);
-        $http.post("/api/v1/individualrankings",$scope.newindividualranking).success(function(){
+        $http.post("/api/v1/individualRankings",$scope.newindividualranking).success(function(){
         refresh();
 
         });
     }
     $scope.deleteIndividualRanking = function(name){
         console.log(name);
-        $http.delete("/api/v1/individualrankings/"+name).success(function(){
+        $http.delete("/api/v1/individualRankings/"+name).success(function(){
         refresh();
 
     });

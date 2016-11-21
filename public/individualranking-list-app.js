@@ -3,10 +3,10 @@ angular.module("IndividualRankinglistApp",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
         .when("/",{
-            controller:"IndividualListCtrl",
+            controller:"IndividualRankingListCtrl",
             templateUrl:"globalranking-list.html"
         })
-        .when("/individualrankings/:name",{
+        .when("/individualRankings/:name",{
             controller:"IndividualRankingEditCtrl",
             templateUrl:"individualranking-edit.html"
         })

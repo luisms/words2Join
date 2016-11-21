@@ -1,8 +1,8 @@
 angular.module("IndividualRankinglistApp")
 .controller("IndividualRankingEditCtrl",function($scope,$http,$routeParams,$location){
     console.log("IndividualRanking list controller initialized");
-    $http.get("/api/v1/individualRankings/"+ $routeParams.name).success(function(individualranking){
-        $scope.individualranking=individualranking;
+    $http.get("/api/v1/individualRankings/"+ $routeParams.name).success(function(individualrankings){
+        $scope.individualrankings=individualrankings;
     });
 
 
