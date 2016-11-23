@@ -3,11 +3,11 @@ angular.module("IndividualRankinglistApp",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
         .when("/",{
-            controller:"IndividualRankingListCtrl",
+            controller:"individualranking-list-ctrl",
             templateUrl:"globalranking-list.html"
         })
         .when("/individualRankings/:name",{
-            controller:"IndividualRankingEditCtrl",
+            controller:"individualranking-ctrl",
             templateUrl:"individualranking-edit.html"
         })
     }) ;

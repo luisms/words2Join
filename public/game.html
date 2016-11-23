@@ -1,0 +1,29 @@
+<h1>Juego de {{player}}</h1>
+
+<table class="table">
+    <tbody>
+        <tr ng-show="game">
+            <td>
+                <form ng-submit="addWord()">
+                    <input class="form-control" placeholder="Add words to play" ng-model="newWord">
+                </form>
+            </td>
+            <td><button class="btn btn-primary" ng-click="addWord()">Add</button></td>
+        </tr>
+    </tbody>
+    <thread>
+        <tr>
+            <th>Words</th>
+            <th>Length</th>
+        </tr>
+    </thread>
+    <tbody>
+        <tr ng-repeat="word in words">
+            <td>{{word}}</td>
+            <td>{{word.length}}</td>
+        </tr>
+        <tr ng-show="end">
+            <td><button class="btn btn-primary" ng-click="endGame()">Finish</button></td>
+        </tr>
+    </tbody>
+</table>
