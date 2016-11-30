@@ -1,4 +1,4 @@
-angular.module("IndividualRankinglistApp")
+angular.module("words2JoinAPP")
 .controller("IndividualRankingListCtrl",function($scope,$http){
     console.log("IndividualRangs List controller");
     function refresh(){

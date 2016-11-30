@@ -1,0 +1,37 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "Trabajo de la asignatura Sistemas de información para el máster de Ingeniería Informática de la Universidad de Sevilla.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.3.3",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "jade": "^1.11.0",
+    "morgan": "^1.7.0",
+    "nedb": "^1.8.0",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.5.2",
+    "serve-favicon": "^2.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisms/words2Join.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luisms/words2Join/issues"
+  },
+  "homepage": "https://github.com/luisms/words2Join#readme",
+  "keywords": []
+}

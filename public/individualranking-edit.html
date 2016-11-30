@@ -10,9 +10,9 @@
                  </thead>
                 <tbody>
                     <tr ng-repeat="individualranking in individualrankings">
-                       <td>{{individualranking.ranking}}</td>
+                    <td>{{individualranking.ranking}}</td>
                     <!--<td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a> </td>-->
-                    <td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a></td>
+                    <td>{{individualranking.player}}</td>
                     <td>{{individualranking.score}}</td>
                     <td>{{individualranking.date}}</td>
                         
@@ -22,4 +22,5 @@
 
                 </tbody>
             </table>
+            <a href="/#/individualRankings">Atrás</a>
       

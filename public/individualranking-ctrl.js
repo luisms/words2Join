@@ -1,4 +1,4 @@
-angular.module("IndividualRankinglistApp")
+angular.module("words2JoinAPP")
 .controller("IndividualRankingEditCtrl",function($scope,$http,$routeParams,$location){
     console.log("IndividualRanking list controller initialized");
     $http.get("/api/v1/individualRankings/"+ $routeParams.name).success(function(individualrankings){
