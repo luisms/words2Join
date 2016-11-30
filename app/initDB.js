@@ -5,18 +5,18 @@ module.exports.initDBIndGame = function (path, dataStore) {
         autoload: true
     });
 
-    //typedef var individualGameX {ranking, player, score, date}
+    //typedef var individualGameX {id, player, score, date}
     var dateNow = new Date();
-    var individualGame1 = { ranking: 1, player: "Pablo", score: "1975", date: dateNow.toISOString() };
-    var individualGame2 = { ranking: 2, player: "Paco", score: "1290", date: dateNow.toISOString() };
-    var individualGame3 = { ranking: 3, player: "Macarena", score: "1275", date: dateNow.toISOString() };
-    var individualGame4 = { ranking: 4, player: "Rogelia", score: "1200", date: dateNow.toISOString() };
-    var individualGame5 = { ranking: 5, player: "Pamela", score: "1100", date: dateNow.toISOString() };
-    var individualGame6 = { ranking: 6, player: "Rocco", score: "1090", date: dateNow.toISOString() };
-    var individualGame7 = { ranking: 7, player: "Alex", score: "1075", date: dateNow.toISOString() };
-    var individualGame8 = { ranking: 8, player: "Pablo", score: "990", date: dateNow.toISOString() };
-    var individualGame9 = { ranking: 9, player: "Fermín", score: "875", date: dateNow.toISOString() };
-    var individualGame10 = { ranking: 10, player: "Pablo", score: "690", date: dateNow.toISOString() };
+    var individualGame1 = { player: "Pablo", score: 1975, date: dateNow.toISOString(), id: 1};
+    var individualGame2 = { player: "Paco", score: 1290, date: dateNow.toISOString(), id: 2};
+    var individualGame3 = { player: "Macarena", score: 1275, date: dateNow.toISOString(), id: 3};
+    var individualGame4 = { player: "Rogelia", score: 1200, date: dateNow.toISOString(), id: 4};
+    var individualGame5 = { player: "Pamela", score: 1100, date: dateNow.toISOString(), id: 5};
+    var individualGame6 = { player: "Rocco", score: 1090, date: dateNow.toISOString(), id: 6};
+    var individualGame7 = { player: "Alex", score: 1075, date: dateNow.toISOString(), id: 7};
+    var individualGame8 = { player: "Pablo", score: 990, date: dateNow.toISOString(), id: 8};
+    var individualGame9 = { player: "Fermín", score: 875, date: dateNow.toISOString(), id: 9};
+    var individualGame10 = { player: "Pablo", score: 690, date: dateNow.toISOString(), id: 10};
     var individualGames = [individualGame1, individualGame2, individualGame3, individualGame4,
         individualGame5, individualGame6, individualGame7, individualGame8, individualGame9, individualGame10];
 

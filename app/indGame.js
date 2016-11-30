@@ -6,6 +6,7 @@ module.exports = function (app, apiBaseURL, db) {
             if (err) {
                 res.sendStatus(500);
             } else {
+                games.sort(function(a, b){return a.id - b.id});
                 res.send(games);
             }
         });
@@ -38,27 +39,35 @@ module.exports = function (app, apiBaseURL, db) {
         if (game == null) {
             console.log("No data sent -> null request at post or no name's player");
         } else {
-            db.insert(game);
-            console.log("Game Inserted:" + JSON.stringify(game, null, ' '));
+            db.find({}, (err, individualGames) => {
+                if (err) {
+                    res.sendStatus(500);
+                } else {
+                    //game.unshift({id: individualGames.length + 1});
+                    game.id = individualGames.length + 1;
+                    db.insert(game); 
+                    console.log("Game Inserted:" + JSON.stringify(game, null, ' '));
+                    res.sendStatus(200);
+                }
+            });
         }
-        res.sendStatus(200);
     });
 
 
     //To update individual game at games:
-    app.put(apiBaseURL + '/individualGames/:ranking', (req, res) => {
-        var ranking = req.params.ranking;
+    app.put(apiBaseURL + '/individualGames/:id', (req, res) => {
+        var id = req.params.id;
         var individualGame = req.body;
 
-        console.log("New PUT request over /individualGames/" + ranking);
+        console.log("New PUT request over /individualGames/" + id);
         console.log("Data: " + JSON.stringify(individualGame, 2));
 
-        if (ranking != individualGame.ranking) {
+        if (individualGame.score == null) {
             res.sendStatus(409);
             return;
         }
 
-        db.update({ ranking: parseInt(ranking) }, individualGame, (err, numUpdates) => {
+        db.update({ id: parseInt(id) }, {$set: {score: individualGame.score}}, (err, numUpdates) => {
             if (err) {
                 res.sendStatus(500);
             } else {
@@ -68,14 +77,24 @@ module.exports = function (app, apiBaseURL, db) {
         })
     });
 
+    //To delete all individual game
+    app.delete(apiBaseURL + '/individualGames', function (req, res) {
+        console.log("NEW DELETE all request over /individualGames");
+        db.remove({}, { multi: true }, function (err, numRemoved) {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                console.log("Deleted " + numRemoved + " objects.");
+                res.sendStatus(200);
+            }
+        })
+    });
+
     //To delete one individual game from games:
-
-    app.delete(apiBaseURL + "/individualGames/:ranking", (req, res) => {
-
-        var ranking = req.params.ranking;
-        console.log("New DELETE request over /contact/" + ranking);
-
-        db.remove({ ranking: parseInt(ranking) }, {}, (err, numRemoved) => {
+    app.delete(apiBaseURL + "/individualGames/:id", (req, res) => {
+        var id = req.params.id;
+        console.log("New DELETE request over /individualGames/" + id);
+        db.remove({ id: parseInt(id) }, {}, (err, numRemoved) => {
             if (err) {
                 res.sendStatus(500);
             } else {
