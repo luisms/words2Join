@@ -22,7 +22,6 @@ angular.module("words2JoinAPP")
         $scope.endGame = function () {
             var date = new Date();
             $http.post("/api/v1/individualGames", {
-                "ranking": 1,
                 "player": $scope.player,
                 "score": $scope.score,
                 "date": date

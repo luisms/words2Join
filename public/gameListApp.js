@@ -1,4 +1,3 @@
-
 angular.module("words2JoinAPP",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
@@ -10,6 +9,11 @@ angular.module("words2JoinAPP",["ngRoute"])
             controller:"game-ctrl",
             templateUrl:"game.html"
         })
+
+        .when("/profile/:player",{
+            controller:"profile-ctrl",
+            templateUrl:"profile.html"
+        })
     
         .when("/individualRankings",{
             controller:"IndividualRankingListCtrl",
@@ -19,11 +23,4 @@ angular.module("words2JoinAPP",["ngRoute"])
             controller:"IndividualRankingEditCtrl",
             templateUrl:"individualranking-edit.html"
         })
-
-
-
-
-
-
-
 }) ;

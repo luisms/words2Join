@@ -1,0 +1,34 @@
+<h1>Perfil</h1>
+<h2>Bienvenido {{player}}</h2>
+<h3 ng-show="friend">No hay amigos agregados.</h3>
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <form ng-submit="addFriend()">
+                    <input class="form-control" placeholder="Add friends" ng-model="newFriend">
+                </form>
+            </td>
+            <td><button class="btn btn-primary" ng-click="addFriend()">Add</button></td>
+        </tr>
+    </tbody>
+</table>
+<table class="table" ng-hide="friend">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Best score</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="friend in listFriends">
+            <td>{{friend.friends[$index].player}}</td>
+            <td>{{friend.friends[$index].score}}</td>
+            <td>{{friend.friends[$index].date}}</td>
+            <td><button class="btn btn-danger" ng-click="deleteFriend(friend.friends[$index].player)">Delete friend</button></td>
+        </tr>
+    </tbody>
+</table>
+<a href="/#/">Menú principal</a>
