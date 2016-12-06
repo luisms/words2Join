@@ -26,7 +26,7 @@
         <tr ng-repeat="friend in listFriends">
             <td>{{friend.friends[$index].player}}</td>
             <td>{{friend.friends[$index].score}}</td>
-            <td>{{friend.friends[$index].date}}</td>
+            <td>{{friend.friends[$index].date | date:'MM/dd/yyyy'}}</td>
             <td><button class="btn btn-danger" ng-click="deleteFriend(friend.friends[$index].player)">Delete friend</button></td>
         </tr>
     </tbody>

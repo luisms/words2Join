@@ -1,9 +1,9 @@
 angular.module("words2JoinAPP")
-.controller("IndividualRankingListCtrl",function($scope,$http){
-    console.log("IndividualRangs List controller");
+.controller("globalranking-ctrl",function($scope,$http){
+    console.log("Global ranking controller");
     function refresh(){
-    $http.get("/api/v1/individualRankings").success(function(individualrankings){
-        $scope.individualrankings=individualrankings;
+    $http.get("/api/v1/individualRankings").success(function(ranking){
+        $scope.ranking=ranking;
 
 
     });
