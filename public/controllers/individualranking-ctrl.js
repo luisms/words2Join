@@ -1,6 +1,6 @@
 angular.module("words2JoinAPP")
-.controller("IndividualRankingEditCtrl",function($scope,$http,$routeParams,$location){
-    console.log("IndividualRanking list controller initialized");
+.controller("individualranking-ctrl",function($scope,$http,$routeParams,$location){
+    console.log("Individual ranking controller");
     $http.get("/api/v1/individualRankings/"+ $routeParams.name).success(function(individualrankings){
         $scope.individualrankings=individualrankings;
     });

@@ -1,16 +1,11 @@
-{"ranking":10,"player":"Pablo","score":"690","date":"2016-11-21T12:04:49.213Z","_id":"CkYUoIy2vi496VlG"}
-{"ranking":7,"player":"Alex","score":"1075","date":"2016-11-21T12:04:49.213Z","_id":"EdUJtFfRQK1BHl3b"}
-{"ranking":9,"player":"Fermín","score":"875","date":"2016-11-21T12:04:49.213Z","_id":"JfKsVO8Dpq7cjPBF"}
-{"ranking":2,"player":"Paco","score":"1290","date":"2016-11-21T12:04:49.213Z","_id":"T45ut6osvLhj8j1R"}
-{"ranking":3,"player":"Macarena","score":"1275","date":"2016-11-21T12:04:49.213Z","_id":"VvQ4n4zGJDQxEaeY"}
-{"ranking":4,"player":"Rogelia","score":"1200","date":"2016-11-21T12:04:49.213Z","_id":"alcYMyzJBSJRPYLp"}
-{"ranking":1,"player":"Pablo","score":"1975","date":"2016-11-21T12:04:49.213Z","_id":"gwZ7ZUceogDw55Mc"}
-{"ranking":8,"player":"Pablo","score":"990","date":"2016-11-21T12:04:49.213Z","_id":"kPngyu9l2350oKZS"}
-{"ranking":5,"player":"Pamela","score":"1100","date":"2016-11-21T12:04:49.213Z","_id":"pk4o6ZLC19tFsvUj"}
-{"ranking":6,"player":"Rocco","score":"1090","date":"2016-11-21T12:04:49.213Z","_id":"y9cG5mdjKR2b0sVh"}
-{"ranking":1,"player":"pedrupedo","score":0,"_id":"2Pg5M9CXuDC4bZdx"}
-{"ranking":1,"player":"ash","score":0,"date":"2016-11-23T00:13:25.414Z","_id":"CBmajaCOtvcwkowQ"}
-{"ranking":1,"player":"john nieve","score":0,"date":"2016-11-23T00:16:10.595Z","_id":"5OP6QqYHvd6tE0xW"}
-{"ranking":1,"player":"el pato mickey","score":0,"date":"2016-11-23T00:17:52.715Z","_id":"OGzbFD33dDm3ahuD"}
-{"ranking":1,"player":"gfdfhd","score":65,"date":"2016-11-23T00:20:05.906Z","_id":"nf9OE4cVACcjcAc9"}
-{"ranking":1,"player":"brock","score":50,"date":"2016-11-23T00:21:01.382Z","_id":"fZXk9auiD6hFfmVW"}
+{"player":"Pablo","score":1975,"date":"2016-12-06T18:35:38.463Z","id":1,"_id":"yjZoAcWBfpEEy81Y"}
+{"player":"Paco","score":1290,"date":"2016-12-06T18:35:38.463Z","id":2,"_id":"449E84AZlm7ls8w8"}
+{"player":"Macarena","score":1275,"date":"2016-12-06T18:35:38.463Z","id":3,"_id":"wbfCntZ2BVBRuAAh"}
+{"player":"Rogelia","score":1200,"date":"2016-12-06T18:35:38.463Z","id":4,"_id":"mhYxnzLjuMbcd2xC"}
+{"player":"Pamela","score":1100,"date":"2016-12-06T18:35:38.463Z","id":5,"_id":"2yaFW71hpJb7o7iA"}
+{"player":"Rocco","score":1090,"date":"2016-12-06T18:35:38.463Z","id":6,"_id":"fDfj2qImCwHoTVvG"}
+{"player":"Alex","score":1075,"date":"2016-12-06T18:35:38.463Z","id":7,"_id":"LE3gh1T10CPVfIRT"}
+{"player":"Pablo","score":990,"date":"2016-12-06T18:35:38.463Z","id":8,"_id":"O0WESzMDkc2Hc0L3"}
+{"player":"Fermín","score":875,"date":"2016-12-06T18:35:38.463Z","id":9,"_id":"4vIakYXbhvoXKvl5"}
+{"player":"Pablo","score":690,"date":"2016-12-06T18:35:38.463Z","id":10,"_id":"QKFqnIf4l795L46I"}
+{"player":"prueba","score":91,"date":"2016-12-06T18:36:35.185Z","id":11,"_id":"ekdIBHjvLmp2Vzmz"}

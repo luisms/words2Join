@@ -82,7 +82,6 @@ module.exports = function (app, apiBaseURL, db) {
     //Borrado total
     app.delete(apiBaseURL + '/friends', function (req, res) {
         console.log("NEW DELETE all friends");
-
         db.remove({}, { multi: true }, function (err, numRemoved) {
             if (err) {
                 res.sendStatus(500);

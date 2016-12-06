@@ -6,4 +6,8 @@ angular.module("words2JoinAPP")
             console.log($scope.newGame);
             $location.path("/individualGames/"+$scope.newGame.player);           
     }   
+    $scope.profile = function(){
+            console.log($scope.newGame);
+            $location.path("/profile/"+$scope.newGame.player);           
+    }   
 });
