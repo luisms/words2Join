@@ -1,0 +1,26 @@
+     <h1> Individual ranking </h1>
+            <table class ="table">
+                <thead>
+                <tr>
+                    <th>Ranking</th>
+                    <th>Player</th>
+                    <th>Score</th>   
+                    <th>Date</th> 
+                </tr>    
+                 </thead>
+                <tbody>
+                    <tr ng-repeat="individualranking in individualrankings">
+                    <td>{{individualranking.ranking}}</td>
+                    <!--<td><a href="/#/individualRankings/{{individualranking.player}}">{{individualranking.player}}</a> </td>-->
+                    <td>{{individualranking.player}}</td>
+                    <td>{{individualranking.score}}</td>
+                    <td>{{individualranking.date}}</td>
+                        
+                        <!--<td><button class="btn btn-primary" ng-click="updateIndividualRanking(individualranking.player)">Update</button></td>-->
+                    </tr>
+               
+
+                </tbody>
+            </table>
+            <a href="/#/individualRankings">Atrás</a>
+      
