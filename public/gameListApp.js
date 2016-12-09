@@ -9,19 +9,24 @@ angular.module("words2JoinAPP",["ngRoute"])
         })
         .when("/individualGames",{
             controller:"home-ctrl",
-            templateUrl:"home.html"
+            templateUrl:"views/home.html"
         })
         .when("/individualGames/:player",{
             controller:"game-ctrl",
-            templateUrl:"game.html"
+            templateUrl:"views/game.html"
+        })
+
+        .when("/profile/:player",{
+            controller:"profile-ctrl",
+            templateUrl:"views/profile.html"
         })
     
-        .when("/individualRankings",{
-            controller:"IndividualRankingListCtrl",
-            templateUrl:"globalranking-list.html"
+        .when("/ranking",{
+            controller:"globalranking-ctrl",
+            templateUrl:"views/globalranking.html"
         })
-        .when("/individualRankings/:name",{
-            controller:"IndividualRankingEditCtrl",
-            templateUrl:"individualranking-edit.html"
+        .when("/ranking/:name",{
+            controller:"individualranking-ctrl",
+            templateUrl:"views/individualranking.html"
         })
 }) ;
