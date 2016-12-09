@@ -1,20 +1,16 @@
-// views/login.jade
-
 extends layout
 
-block content
-
+block content  
   div(id="root" style="width: 280px; margin: 40px auto; padding: 10px;")
-
   script.
-    // Construct an instance of Auth0Lock with your clientId and aut0 domain name
-    var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}',{ auth: {
-          redirectUrl: '#{env.AUTH0_CALLBACK_URL}'
+    var lock = new Auth0Lock('#{process.env.AUTH0_CLIENT_ID}', '#{process.env.AUTH0_DOMAIN}', { auth: {
+          redirectUrl: '#{process.env.AUTH0_CALLBACK_URL}'
         , responseType: 'code'
         , params: {
           scope: 'openid name email picture'
         }
-      }});
-
-    // Show lock's login widget
+      }
+        });
     lock.show();
+
+  

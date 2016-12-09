@@ -4,6 +4,7 @@
   "description": "Trabajo de la asignatura Sistemas de información para el máster de Ingeniería Informática de la Universidad de Sevilla.",
   "main": "index.js",
   "dependencies": {
+    "auth0-js": "^7.6.0",
     "body-parser": "^1.15.2",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -24,7 +25,7 @@
     "start": "node ./bin/www"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luisms/words2Join.git"

@@ -12,17 +12,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var app = express();
 var apiBaseURL = "/api/v1";
-
+var app = express();
 app.use(bodyParser.json());
+
 dotenv.load();
+console.log(process.env.AUTH0_DOMAIN);
+console.log(process.env.AUTH0_CLIENT_ID);
+
 // Configure Passport to use Auth0
 var strategy = new Auth0Strategy({
     domain:       process.env.AUTH0_DOMAIN,
     clientID:     process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:  process.env.AUTH0_CALLBACK_URL || 'http://localhost:5001/callback'
+    callbackURL:  process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
@@ -40,8 +43,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
-app.use(passport.initialize());
-app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,14 +56,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   secret: 'shhhhhhhhh',
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.static(path.join(__dirname, 'routes')));
+app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', routes);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -103,7 +109,6 @@ require('./app/friends')(app, apiBaseURL, dbFriends);
 require('./app/indGame')(app, apiBaseURL, dbIndGame);
 require('./app/ranking')(app, apiBaseURL, dbIndGame);
 //require('./app/globranking')(app, apiBaseURL);
-
 //Pagina principal
 app.get('/', function (req, res) {
     console.log("NEW GET");

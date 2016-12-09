@@ -2,7 +2,7 @@
 angular.module("IndividualRankinglistApp",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
-        .when("/",{
+        .when("/individualRankings",{
             controller:"individualranking-list-ctrl",
             templateUrl:"globalranking-list.html"
         })

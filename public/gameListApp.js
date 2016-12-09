@@ -3,6 +3,11 @@ angular.module("words2JoinAPP",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
         .when("/",{
+            redirectTo: function() {
+                window.location = "http://localhost:3000/homePage";
+             } 
+        })
+        .when("/individualGames",{
             controller:"home-ctrl",
             templateUrl:"home.html"
         })
@@ -19,11 +24,4 @@ angular.module("words2JoinAPP",["ngRoute"])
             controller:"IndividualRankingEditCtrl",
             templateUrl:"individualranking-edit.html"
         })
-
-
-
-
-
-
-
 }) ;
