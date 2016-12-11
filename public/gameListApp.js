@@ -3,11 +3,17 @@ angular.module("words2JoinAPP",["ngRoute"])
     .config(function ($routeProvider){
         $routeProvider
         .when("/",{
-            redirectTo: function() {
-                window.location = "http://localhost:3000/homePage";
-             } 
+            templateUrl:"views/authentication.html"
         })
-        .when("/individualGames",{
+        .when("/login",{
+            controller:"login-ctrl",
+            templateUrl:"views/login.html"
+        })
+        .when("/signup",{
+            controller:"signup-ctrl",
+            templateUrl:"views/signup.html"
+        })
+        .when("/home",{
             controller:"home-ctrl",
             templateUrl:"views/home.html"
         })
