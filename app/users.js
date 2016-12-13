@@ -1,13 +1,11 @@
 module.exports = function (app, apiBaseURL, db, passport) {
 
-    app.post('/login', function (req, res, next) {
-        passport.authenticate('login', function (err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { res.json({ value: false }); }
-            req.logIn(user, function (err) {
-                if (err) { return next(err); }
-                return res.json({ value: true });
-            });
-        })(req, res, next);
+    app.post(apiBaseURL + '/signup', passport.authenticate('signup'), function (req, res) {
+        console.log("Respuesta: " + res);
+        res.send(req.user.username);
+    });
+
+    app.post(apiBaseURL + '/login', passport.authenticate('login'), function (req, res) {
+        res.send(req.user.username);
     });
 };

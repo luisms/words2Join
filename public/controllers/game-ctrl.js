@@ -1,7 +1,7 @@
 angular.module("words2JoinAPP")
     .controller("game-ctrl", function ($scope, $http, $routeParams, $location) {
         console.log("game controller");
-        $scope.player = $routeParams.player;
+        $scope.player = $routeParams.username;
         $scope.words = [];
         $scope.score = 0;
         $scope.game = true;
@@ -26,7 +26,7 @@ angular.module("words2JoinAPP")
                 "score": $scope.score,
                 "date": date
             }).success(function () {
-                $location.path("/");
+                $location.path("/home/" + $scope.player);
             });
         }
     });
