@@ -1,7 +1,7 @@
 angular.module("words2JoinAPP")
     .controller("profile-ctrl", function ($scope, $http, $routeParams, $location) {
         console.log("profile controller");
-        $scope.player = $routeParams.player;
+        $scope.player = $routeParams.username;
         $scope.friend = false;
         function refresh() {
             $http.get("/api/v1/friends/" + $scope.player).success(function (listFriends) {

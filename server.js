@@ -85,4 +85,3 @@ require('./app/indGame')(app, apiBaseURL, dbIndGame);
 require('./app/ranking')(app, apiBaseURL, dbIndGame);
 
 module.exports = app;
-
