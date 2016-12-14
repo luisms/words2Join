@@ -15,14 +15,11 @@ angular.module("words2JoinAPP", ["ngRoute"])
                 templateUrl: "views/signup.html",
                 access: { restricted: false }
             })
-
             .when("/home/:username", {
                 controller: "home-ctrl",
                 templateUrl: "views/home.html",
                 access: { restricted: true }
             })
-
-
             .when("/individualGames/:username", {
                 controller: "game-ctrl",
                 templateUrl: "views/game.html",
