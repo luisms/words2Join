@@ -25,7 +25,7 @@ angular.module("words2JoinAPP")
                 "player": $scope.player,
                 "score": $scope.score,
                 "date": date
-            }).success(function () {
+            }).then(function () {
                 $location.path("/home/" + $scope.player);
             });
         }
