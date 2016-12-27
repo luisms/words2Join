@@ -1,7 +1,8 @@
-angular.module("words2JoinAPP", ["ngRoute"])
+angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage'])
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
+                controller: "Auth0-ctrl",
                 templateUrl: "views/authentication.html",
                 access: { restricted: false }
             })
@@ -41,7 +42,15 @@ angular.module("words2JoinAPP", ["ngRoute"])
                 templateUrl: "views/individualranking.html",
                 access: { restricted: true }
             })
-    }).config(['$locationProvider', function($locationProvider) {
+    })
+    //Inicialización Passport
+    .config(function($provide, authProvider) {
+      authProvider.init({
+        domain: 'yoiiii121.eu.auth0.com',
+        clientID: 'IR7wby3JE4nJudEgPGcflD4pleLxam5M'
+      });
+    })  
+    .config(['$locationProvider', function($locationProvider) {
         $locationProvider.hashPrefix('');
     }])
     //Redireccionamiento en función de los permisos y de si se ha realizado el login

@@ -14,6 +14,7 @@ angular.module("words2JoinAPP")
                 }).then(function (response) {
                     console.log("Status: " + response.status);
                     if (response.data == $scope.username) {
+                        $rootScope.isAuth0 = false;
                         $rootScope.isLogged = true;
                         $rootScope.username = $scope.username;
                         $location.path("/home/" + $scope.username);
