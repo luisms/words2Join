@@ -1,0 +1,20 @@
+<h1>Global Ranking</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ranking</th>
+            <th>Player</th>
+            <th>Score</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="globalranking in ranking">
+            <td>{{$index + 1}}</td>
+            <td><a href="/#/ranking/{{globalranking.player}}">{{globalranking.player}}</a> </td>
+            <td>{{globalranking.score}}</td>
+            <td>{{globalranking.date | date:'MM/dd/yyyy'}}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="/#/">Menú principal</a>
