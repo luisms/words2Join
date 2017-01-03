@@ -1,6 +1,4 @@
-
 module.exports = function (app, apiBaseURL, db) {
-
     //Muestra todos los usuarios
     app.get(apiBaseURL + '/friends', function (req, res) {
         console.log("NEW GET friends");

@@ -1,11 +1,36 @@
+module.exports.initDBUsers = function (path, dataStore) {
+    var dbFileName = path.join(__dirname, 'db/users.json');
+    var dbUsers = new dataStore({
+        filename: dbFileName,
+        autoload: true
+    });
+
+    //typedef var Users {username, password}
+    var user = {
+        "username": "jose",
+        "password": "prueba"
+    };
+    var users = [user];
+
+    dbUsers.find({}, (err, user) => {
+        if (user.length == 0) {
+            dbUsers.insert(users);
+            console.log("EMPTY users DB! Inserted'" + users.length + "'default users");
+        } else {
+            console.log("Loaded DB with " + user.length + " users");
+        }
+    });
+    return dbUsers;
+}
+
 module.exports.initDBIndGame = function (path, dataStore) {
-    var dbFileName = path.join(__dirname, 'individualGames.json');
+    var dbFileName = path.join(__dirname, 'db/individualGames.json');
     var dbIndGame = new dataStore({
         filename: dbFileName,
         autoload: true
     });
 
-    //typedef var individualGameX {id, player, score, date}
+    //typedef var individualGameX {player, score, date, id}
     var dateNow = new Date();
     var individualGame1 = { player: "Pablo", score: 1975, date: dateNow.toISOString(), id: 1};
     var individualGame2 = { player: "Paco", score: 1290, date: dateNow.toISOString(), id: 2};
@@ -32,15 +57,15 @@ module.exports.initDBIndGame = function (path, dataStore) {
 }
 
 module.exports.initDBFriends = function (path, dataStore) {
-    var dbFileName = path.join(__dirname, 'friends.json');
+    var dbFileName = path.join(__dirname, 'db/friends.json');
     var dbFriend = new dataStore({
         filename: dbFileName,
         autoload: true
     });
 
-  /*Format: {string player, "friends":[ {"player":"John", "score": integer, "date": formato fecha, "ranking": integer},
-                                        {"player":"John", "score": integer, "date": formato fecha, "ranking": integer},
-                                        {"player":"John", "score": integer, "date": formato fecha, "ranking": integer}]} */
+  /*Format: {string player, "friends":[ {"player":"John", "score": integer, "date": formato fecha},
+                                        {"player":"John", "score": integer, "date": formato fecha},
+                                        {"player":"John", "score": integer, "date": formato fecha}]} */
     var dateNow = new Date();
     var friend = {
         "player": "jose",
