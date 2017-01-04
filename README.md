@@ -3,8 +3,5 @@ Vamos a desarrollar un juego online competitivo, en el que la gente tendrá que 
  
 Las funcionalidades que nuestro proyecto tendrá serán:
      El sistema será elástico.
-     El sistema será elástico.
      Será concurrente.
-     Será concurrente.
-     Tendrá modo competitivo.
      Tendrá modo competitivo.
