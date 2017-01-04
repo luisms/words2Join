@@ -71,7 +71,6 @@ module.exports.initDBFriends = function (path, dataStore) {
         "player": "jose",
         "friends": [{
             "player": "John",
-            "score": 1234,
             "date": "2012-04-23T18:25:43.511Z"
         }]
     };

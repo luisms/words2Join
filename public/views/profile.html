@@ -1,6 +1,6 @@
 <h1>Perfil</h1>
 <h2>Bienvenido {{player}}</h2>
-<h3 ng-show="friend">No hay amigos agregados.</h3>
+
 <table class="table">
     <tbody>
         <tr>
@@ -17,18 +17,18 @@
     <thead>
         <tr>
             <th>Player</th>
-            <th>Best score</th>
             <th>Date</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="friend in listFriends">
-            <td>{{friend.friends[$index].player}}</td>
-            <td>{{friend.friends[$index].score}}</td>
-            <td>{{friend.friends[$index].date | date:'MM/dd/yyyy'}}</td>
-            <td><button class="btn btn-danger" ng-click="deleteFriend(friend.friends[$index].player)">Delete friend</button></td>
+            <td>{{friend.player}}</td>
+            <td>{{friend.date | date:'dd/MM/yyyy'}}</td>
+            <td><button class="btn btn-danger" ng-click="deleteFriend(friend.player)">Delete friend</button></td>
         </tr>
     </tbody>
+    
 </table>
+<h3 ng-show="friend">No hay amigos agregados.</h3>
 <a href="/#/">Menú principal</a>
