@@ -15,4 +15,21 @@ module.exports = function (app, apiBaseURL, db, passport) {
         });
         console.log("Logout done");
     });
+    //Para obtener Usuario:
+    app.get(apiBaseURL + '/users/:user', function (req, res) {
+        console.log("GET to obtain user");
+        db.find({username:req.params.user}, (err, users) => {
+            if (err) {
+                res.sendStatus(500);
+            } else {
+                if (users != null){
+                    res.send(users);
+                    console.log("Usuario obtenido");
+                }else{
+                    res.sendStatus(200);
+                    console.log("Nombre de usuario nulo");
+                }
+            }
+        });
+    });
 };

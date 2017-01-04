@@ -1,1 +1,2 @@
-{"player":"jose","friends":[],"_id":"dFcl3N5jRMcIp6a0"}
+{"player":"mika","friends":[{"player":"kiko","date":"2017-01-04T20:02:20.754Z"},{"player":"jose","date":"2017-01-04T20:02:35.233Z"}],"_id":"ZoQuOsHgk1fey3Kl"}
+{"player":"jose","friends":[{"player":"kiko","date":"2017-01-04T20:07:17.443Z"},{"player":"jose","date":"2017-01-04T20:07:28.379Z"},{"player":"paco","date":"2017-01-04T20:07:37.017Z"}],"_id":"qQQ3t4hheKcdJTHG"}
