@@ -34,7 +34,12 @@ angular.module("words2JoinAPP")
                 $http.get("/api/v1/users/" + $scope.newFriend).then(function (friend) {
                     //Si se ha mandado un nombre de amigo 
                     //Se comprueba que existe un usuario con ese nombre en tabla users
-                    if(friend!=null){                        
+                    
+                    var salida ='';
+                    for (var p in friend) {
+                        salida += p + ':' + friend[p] + 'n';
+                    }
+                    if(friend !=null){                        
                         console.log("/api/v1/users/" + $scope.newFriend);
                         console.log("Existe: " + (friend != null).toString());
                         /*Se comprueba que existe un usuario con ese nombre en tabla friends 
