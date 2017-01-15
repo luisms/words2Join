@@ -1,20 +1,80 @@
-<h1>Individual ranking </h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Ranking</th>
-            <th>Player</th>
-            <th>Score</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="individualranking in individualrankings">
-            <td>{{$index + 1}}</td>
-            <td>{{individualranking.player}}</td>
-            <td>{{individualranking.score}}</td>
-            <td>{{individualranking.date | date:'dd/MM/yyyy'}}</td>
-        </tr>
-    </tbody>
-</table>
-<a href="/#/ranking">Atrás</a>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<style>
+body {
+  background-image: url(words.jpg);
+  background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+}
+table{
+    background-color: white;
+}
+</style>
+<header>
+    <nav>
+      <div class="nav-wrapper indigo lighten-3">
+        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png"/></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="playGame()">Play</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="profile()">Profile</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" href="#/ranking">Ranking</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+</header>
+<body>
+    <h1 class="white-text">Individual ranking </h1>
+    <table class="table" bgcolor="white">
+        <thead>
+            <tr>
+                <th>Ranking</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="individualranking in individualrankings">
+                <td>{{$index + 1}}</td>
+                <td>{{individualranking.player}}</td>
+                <td>{{individualranking.score}}</td>
+                <td>{{individualranking.date | date:'dd/MM/yyyy'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="waves-effect waves-light btn indigo darken-4" href="/#/ranking">Back</a>
+</body>
+<footer class="page-footer indigo lighten-3">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">words2join</h5>
+                <p class="grey-text text-lighten-4">
+                    Made by:<br>
+                        Ana Rodríguez González<br>
+                        Jose Miguel<br>
+                        Luis<br>
+                        José Ignacio<br>
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Documentación</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">github</a></li>
+                </ul>
+            </div>
+            </div>
+         </div>
+         <div class="footer-copyright">
+            <div class="container">
+            © 2017 Copyright
+        </div>
+    </div>
+</footer>

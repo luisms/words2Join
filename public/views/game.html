@@ -1,29 +1,95 @@
-<h1>Juego de {{player}}</h1>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
-<table class="table">
-    <tbody>
-        <tr ng-show="game">
-            <td>
-                <form ng-submit="addWord()">
-                    <input class="form-control" placeholder="Add words to play" ng-model="newWord">
-                </form>
-            </td>
-            <td><button class="btn btn-primary" ng-click="addWord()">Add</button></td>
-        </tr>
-    </tbody>
-    <thread>
-        <tr>
-            <th>Words</th>
-            <th>Length</th>
-        </tr>
-    </thread>
-    <tbody>
-        <tr ng-repeat="word in words">
-            <td>{{word}}</td>
-            <td>{{word.length}}</td>
-        </tr>
-        <tr ng-show="end">
-            <td><button class="btn btn-primary" ng-click="endGame()">Finish</button></td>
-        </tr>
-    </tbody>
-</table>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<style>
+body {
+  background-image: url(words.jpg);
+  background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+}
+table{
+    background-color: white;
+}
+</style>
+<header>
+    <nav>
+      <div class="nav-wrapper indigo lighten-3">
+        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png"/></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="playGame()">Play</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="profile()">Profile</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" href="#/ranking">Ranking</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+</header>
+<body>
+    <div>
+        <h1 class="white-text">Juego de {{player}}</h1>
+        <table class="table" bgcolor="white">
+            <tbody>
+                <tr ng-show="game">
+                    <td>
+                        <form ng-submit="addWord()">
+                            <input class="form-control" placeholder="Add words to play" ng-model="newWord">
+                        </form>
+                    </td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Add</a>
+                        <a href="/#/" class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Cancel Game</a>
+                    </td>                                 
+                </tr>
+            </tbody>
+            <thread>
+                <tr>
+                    <th>Words</th>
+                    <th>Length</th>
+                </tr>
+            </thread>
+            <tbody>
+                <tr ng-repeat="word in words">
+                    <td>{{word}}</td>
+                    <td>{{word.length}}</td>
+                </tr>
+                <tr ng-show="end">
+                    <td><a class="waves-effect waves-light btn indigo darken-4" ng-click="endGame()">Finish</a></td>
+                </tr>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<footer class="page-footer indigo lighten-3">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">words2join</h5>
+                <p class="grey-text text-lighten-4">
+                    Made by:<br>
+                        Ana Rodríguez González<br>
+                        Jose Miguel<br>
+                        Luis<br>
+                        José Ignacio<br>
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Documentación</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">github</a></li>
+                </ul>
+            </div>
+            </div>
+         </div>
+         <div class="footer-copyright">
+            <div class="container">
+            © 2017 Copyright
+        </div>
+    </div>
+</footer>

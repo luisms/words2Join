@@ -24,7 +24,7 @@ module.exports = function (app, apiBaseURL, db, passport) {
             } else {
                 if (users != null){
                     res.send(users);
-                    console.log("Usuario obtenido");
+                    console.log("Usuario añadido");
                 }else{
                     res.sendStatus(200);
                     console.log("Nombre de usuario nulo");
