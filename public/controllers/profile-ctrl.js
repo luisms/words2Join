@@ -31,15 +31,21 @@ angular.module("words2JoinAPP")
         $scope.addFriend = function () {
             if ($scope.newFriend != null) {
                 console.log("Add friend: " + $scope.newFriend);
-                $http.get("/api/v1/users/" + $scope.newFriend).then(function (friend) {
+                $http.get("/api/v1/users/" + $scope.newFriend).then(function (friend,listFriends) {
                     //Si se ha mandado un nombre de amigo 
                     //Se comprueba que existe un usuario con ese nombre en tabla users
-                    
                     var salida ='';
                     for (var p in friend) {
                         salida += p + ':' + friend[p] + 'n';
                     }
-                    if(friend !=null){                        
+                    console.log("List friends "+ $scope.listFriends);
+                    var finded = false;
+                    for(var p in $scope.listFriends){
+                         if(angular.equals( $scope.listFriends[p].player,   $scope.newFriend)){
+                             finded = true;
+                         }
+                    }
+                    if(friend !=null && finded==false){                        
                         console.log("/api/v1/users/" + $scope.newFriend);
                         console.log("Existe: " + (friend != null).toString());
                         /*Se comprueba que existe un usuario con ese nombre en tabla friends 
@@ -54,6 +60,7 @@ angular.module("words2JoinAPP")
                             });
                         }
                         //Si el usuario ya existe, se actualiza su lista de amigos:
+                        
                         var date = new Date();
                         $http.put("/api/v1/friends/"+ $scope.player,{
                                 "player": $scope.newFriend, 
