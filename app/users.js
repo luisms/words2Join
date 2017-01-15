@@ -22,11 +22,11 @@ module.exports = function (app, apiBaseURL, db, passport) {
             if (err) {
                 res.sendStatus(500);
             } else {
-                if (users != null){
+                if (users != null && users.length != 0){
                     res.send(users);
-                    console.log("Usuario obtenido");
+                    console.log("Usuario encontrado "+ (users.length != 0).toString());
                 }else{
-                    res.sendStatus(200);
+                    res.sendStatus(500);
                     console.log("Nombre de usuario nulo");
                 }
             }
