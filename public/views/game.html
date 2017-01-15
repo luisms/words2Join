@@ -1,29 +1,47 @@
-<h1>Juego de {{player}}</h1>
+<head>
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/angular-timer/dist/assets/css/angular-timer-bower.css" />
+</head>
 
-<table class="table">
-    <tbody>
-        <tr ng-show="game">
-            <td>
-                <form ng-submit="addWord()">
-                    <input class="form-control" placeholder="Add words to play" ng-model="newWord">
-                </form>
-            </td>
-            <td><button class="btn btn-primary" ng-click="addWord()">Add</button></td>
-        </tr>
-    </tbody>
-    <thread>
-        <tr>
-            <th>Words</th>
-            <th>Length</th>
-        </tr>
-    </thread>
-    <tbody>
-        <tr ng-repeat="word in words">
-            <td>{{word}}</td>
-            <td>{{word.length}}</td>
-        </tr>
-        <tr ng-show="end">
-            <td><button class="btn btn-primary" ng-click="endGame()">Finish</button></td>
-        </tr>
-    </tbody>
-</table>
+<body>
+    <h1>{{player}}'s individual game</h1>
+    <h3>
+        <timer id="countdown" interval="1000" countdown="120" ng-submit="prueba">
+            Remaining time: {{countdown}} second{{secondsS}}
+            <div class="progress progress-striped {{displayProgressActive}}" style="height: 30px;">
+                <div class="bar" style="min-width: 2em; height: 30px; width: {{progressBar}}%;"> {{ progressBar }}%
+                </div>
+            </div>
+        </timer>
+    </h3>
+    <table class="table">
+        <tbody>
+            <tr ng-show="game">
+                <div class="alert alert-danger" ng-show="showError">{{error}}</div>
+                <td>
+                    <form ng-submit="addWord()">
+                        <input class="form-control" placeholder="Add words to play" ng-model="newWord">
+                    </form>
+                </td>
+                <td><button class="btn btn-primary" ng-click="addWord()">Add</button></td>
+                <p>Score: {{score}}</p>
+            </tr>
+        </tbody>
+        <thread>
+            <tr>
+                <th>Words</th>
+                <th>Length</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr ng-repeat="word in words">
+                <td>{{word}}</td>
+                <td>{{word.length}}</td>
+            </tr>
+            <tr ng-show="end">
+                <td><button class="btn btn-primary" ng-click="endGame()">Finish</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/#/home/" + {{player}}>Back</a>
+</body>

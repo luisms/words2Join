@@ -6,10 +6,11 @@ module.exports = function (app, apiBaseURL, db) {
             if (err) {
                 res.sendStatus(500);
             } else {
-                
-                //console.log("Palabra encontrada: " + word);
-                res.send(word);
-                res.sendStatus(200);
+                if(word.length > 0){
+                    res.send(word);
+                }else{
+                    res.sendStatus(204);
+                }
             }
         });
     });

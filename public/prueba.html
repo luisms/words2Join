@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AngularJS Example - Single Timer Example</title>
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="/bower_components/angular-timer/dist/assets/css/angular-timer-bower.css" />
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="/bower_components/angular-timer/dist/assets/js/angular-timer-bower.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-timer/dist/assets/js/angular-timer-all.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/locales.min.js"></script>
+    <script type="text/javascript" src="/bower_components/humanize-duration/humanize-duration.js"></script>
+
+</head>
+
+<body ng-app="MyApp">
+    <h3>
+        <timer id="countdown" interval="1000" countdown="10">
+            Remaining time: {{countdown}} second{{secondsS}} Activity? {{displayProgressActive}}
+            <div class="progress progress-striped {{displayProgressActive}}" style="height: 30px;">
+                <div class="bar" style="min-width: 2em; height: 30px; width: {{progressBar}}%;"> {{ progressBar }}%
+                </div>
+            </div>
+        </timer>
+    </h3>
+</body>
+
+</html>
