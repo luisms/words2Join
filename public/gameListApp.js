@@ -1,4 +1,4 @@
-angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage'])
+angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer'])
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
