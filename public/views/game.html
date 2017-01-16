@@ -28,15 +28,15 @@ table{
         </ul>
       </div>
     </nav>
-</head>
+</header>
 
 <body>
     <h1 class="white-text">{{player}}'s individual game</h1>
     <h3>
-        <timer id="countdown" interval="1000" countdown="120" ng-submit="prueba">
-            Remaining time: {{countdown}} second{{secondsS}}
-            <div class="progress progress-striped {{displayProgressActive}}" style="height: 30px;">
-                <div class="bar" style="min-width: 2em; height: 30px; width: {{progressBar}}%;"> {{ progressBar }}%
+        <timer id="countdown" interval="1000" countdown="120" ng-submit="prueba" >
+            <a class="white-text">Remaining time: {{countdown}} second{{secondsS}}</a>
+            <div class="progress progress-striped {{displayProgressActive}}" style="height: 50px;">
+                <div class="bar" style="min-width: 2em; height: 50px; width: {{progressBar}}%;"> {{ progressBar }}%
                 </div>
             </div>
         </timer>
@@ -53,8 +53,8 @@ table{
 				<td>
                         <button class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Add</button>
                         <a href="/#/" class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Cancel Game</a>
-                </td> 
-                <p>Score: {{score}}</p>
+                </td>
+                <p class="white-text">Score: {{score}}</p>
             </tr>
         </tbody>
         <thread>
