@@ -12,23 +12,25 @@ angular.module("words2JoinAPP")
                         if ($scope.listFriends.length == 0) {
                             $scope.friend = true;
                         }
-                        
-                       for (var p  in $scope.listFriends) {
-                           console.log("adfasdgadsrfgsdfgsdf g      p    "+ p);
+						var arrayListFriends = $scope.listFriends;
+                      
+						arrayListFriends.forEach((element, index, array)=>{
+							//console.log("1p g      p    "+ p);
                             //$scope.listFriends[p].bestScore = 0;
-                            $http.get("/api/v1/individualRankings/" + $scope.listFriends[p].player).then(function (listGames) {
-                                console.log("sadfasdfsafdasfasd player "+$scope.listFriends[p].player);
+							var player =  element.player;
+							console.log("Antes de get, player: " + player);
+							$http.get("/api/v1/individualRankings/" + player).then(function (listGames) {
+                            console.log("sadfasdfsafdasfasd player "+player);
                                 if(listGames.data[0]!=null)
-                                    $scope.listFriends[p].bestScore = listGames.data[0].score;
+                                    $scope.listFriends[index].bestScore = listGames.data[0].score;
                                 else
-                                    $scope.listFriends[p].bestScore = 0;
+                                    $scope.listFriends[index].bestScore = 0;
                             });
-                                                           
-
-                        }
+						});
+	
 
                         console.log("/api/v1/friends/" + $scope.player);
-                        console.log("Cantidad de amigos: " + $scope.listFriends.length);
+                        console.log("Cantidad de amigos: " + arrayListFriends.length);
                     } else {
                         $scope.friend = true;
                     }
@@ -81,7 +83,7 @@ angular.module("words2JoinAPP")
                         var date = new Date();
                         $http.put("/api/v1/friends/" + $scope.player, {
                             "player": $scope.newFriend,
-                            "date": date
+							"date": date
                         }).then(function () {
                             console.log("Amigo añadido: " + $scope.newFriend);
                             refresh();
