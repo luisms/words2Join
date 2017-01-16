@@ -42,7 +42,7 @@ angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer']
                 access: { restricted: true }
             })
             .when("/ranking", {
-                controller: "globalranking-ctrl",
+                controller: "globalranking-ctrl as vm",
                 templateUrl: "views/globalranking.html",
                 access: { restricted: true }
             })

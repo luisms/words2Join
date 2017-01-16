@@ -34,7 +34,7 @@ angular.module("words2JoinAPP")
                             console.log("Score actual: " + ((response.data[0].word.length / (response.data[0].frec + 0.01)) * 1000));
                             console.log("Score: " + $scope.score);
                         }
-                        $scope.newWord = "";
+                        randomChar();
                         console.log("Cantidad de palabras: " + $scope.words.length);
                         if ($scope.words.length == 10) {
                             $scope.game = false;

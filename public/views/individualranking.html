@@ -16,17 +16,42 @@ table{
 }
 </style>
 <header>
-    <nav>
-      <div class="nav-wrapper indigo lighten-3">
-        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png"/></a>
+<nav>
+    <div class="nav-wrapper indigo lighten-3">
+        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png" /></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="playGame()">Play</a></li>
+            <!--<li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="playGame()">Play</a></li>-->
+            <li><a class="dropdown-button  waves-light btn indigo darken-4" href="#!" data-activates="dropdown1">Play</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="profile()">Profile</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="rank()">Ranking</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="logout()">Logout</a></li>
         </ul>
-      </div>
-    </nav>
+    </div>
+</nav>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li>
+        <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-controller="home-ctrl" ng-click="normalGame()" >Normal mode</a>
+</li>
+<li>
+    <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-controller="home-ctrl" ng-click="hardGame()">Hard mode</a>
+</li>
+</ul>
+<script>
+    $(document).ready(function () {
+        console.log("pantalla cargada");
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+        );
+    });
+</script>
 </header>
 <body>
     <h1 class="white-text">Individual ranking </h1>
