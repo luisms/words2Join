@@ -39,7 +39,12 @@ table{
                 <div class="bar" style="min-width: 2em; height: 50px; width: {{progressBar}}%;"> {{ progressBar }}%
                 </div>
             </div>
+            <!--input id="pickedChar" class="white-text" value="" onload="randomChar()" readonly-->
         </timer>
+        <div id="pickedChar" ng-init="randomChar()"></div>
+    </h3>
+    <h3 class="white-text">
+        Picked Char: {{pickedChar}}
     </h3>
     <table class="table" bgcolor="white">
         <tbody>
