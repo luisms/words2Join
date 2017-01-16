@@ -49,6 +49,7 @@ table{
             <tr>
                 <th>Player</th>
                 <th>Date</th>
+                <th>Best Score</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -56,6 +57,7 @@ table{
             <tr ng-repeat="friend in listFriends">
                 <td>{{friend.player}}</td>
                 <td>{{friend.date | date:'dd/MM/yyyy'}}</td>
+                <td>{{friend.bestScore}}</td>
                 <td><a class="waves-effect waves-light btn red darken-1" ng-click="deleteFriend(friend.player)">Delete friend</a></td>
             </tr>
         </tbody>

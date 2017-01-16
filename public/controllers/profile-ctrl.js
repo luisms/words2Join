@@ -5,13 +5,28 @@ angular.module("words2JoinAPP")
         $scope.listFriends = [];
         $scope.friend = false;
         function refresh() {
-            $http.get("/api/v1/friends/" + $scope.player).then(function (listFriends) {
+            $http.get("/api/v1/friends/" + $scope.player).then(function (listFriends, friend) {
                 if (listFriends.data[0] != null) {
                     $scope.listFriends = listFriends.data[0].friends;
                     if ($scope.listFriends != null) {
                         if ($scope.listFriends.length == 0) {
                             $scope.friend = true;
                         }
+                        
+                       for (var p  in $scope.listFriends) {
+                           console.log("adfasdgadsrfgsdfgsdf g      p    "+ p);
+                            //$scope.listFriends[p].bestScore = 0;
+                            $http.get("/api/v1/individualRankings/" + $scope.listFriends[p].player).then(function (listGames) {
+                                console.log("sadfasdfsafdasfasd player "+$scope.listFriends[p].player);
+                                if(listGames.data[0]!=null)
+                                    $scope.listFriends[p].bestScore = listGames.data[0].score;
+                                else
+                                    $scope.listFriends[p].bestScore = 0;
+                            });
+                                                           
+
+                        }
+
                         console.log("/api/v1/friends/" + $scope.player);
                         console.log("Cantidad de amigos: " + $scope.listFriends.length);
                     } else {
@@ -19,6 +34,7 @@ angular.module("words2JoinAPP")
                     }
                 }
             });
+             
         }
 
         $scope.deleteFriend = function (name) {
@@ -59,6 +75,8 @@ angular.module("words2JoinAPP")
                                 console.log($http.get("/api/v1/friends/" + $scope.player));
                             });
                         }
+
+
                         //Si el usuario ya existe, se actualiza su lista de amigos:                        
                         var date = new Date();
                         $http.put("/api/v1/friends/" + $scope.player, {
