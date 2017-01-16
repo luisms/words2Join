@@ -1,6 +1,6 @@
 angular.module("words2JoinAPP")
-    .controller("game-ctrl", function ($scope, $http, $routeParams, $location) {
-        console.log("game controller");
+    .controller("hardgame-ctrl", function ($scope, $http, $routeParams, $location) {
+        console.log("hard game controller");
         $scope.showError = false;
         $scope.player = $routeParams.username;
         $scope.words = [];
@@ -8,8 +8,15 @@ angular.module("words2JoinAPP")
         $scope.game = true;
         $scope.end = false;
         $scope.pickedChar = 'Null';
+        function randomChar() {
+            var possible = "abcdefghijklmnñopqrstuvwxyz";
+            var pickedChar = possible.charAt(Math.floor(Math.random() * possible.length));
+            $scope.pickedChar = pickedChar;
+            $scope.newWord = pickedChar;
+        }
+        randomChar();
         $scope.addWord = function () {
-            if ($scope.newWord != null) {
+            if ($scope.newWord.slice(0,1) ==  $scope.pickedChar) {
                 console.log("new word");
                 if ($scope.words.indexOf($scope.newWord) != -1) {
                     $scope.showError = true;
@@ -35,7 +42,12 @@ angular.module("words2JoinAPP")
                         }
                     });
                 }
+            }else{
+                $scope.showError = true;
+                $scope.error = "The first letter isn't correct.";
+                $scope.newWord = $scope.pickedChar;
             }
+            
         }
         $scope.endGame = function () {
             var date = new Date();
@@ -47,11 +59,14 @@ angular.module("words2JoinAPP")
                 $location.path("/home/" + $scope.player);
             });
         }
+        /*
         $scope.randomChar = function () {
-            var possible = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+            var possible = "abcdefghijklmnñopqrstuvwxyz";
             var pickedChar = possible.charAt(Math.floor(Math.random() * possible.length));
             $scope.pickedChar = pickedChar;
+            $scope.newWord = pickedChar;
         }
+        */
         $scope.$on('timer-stopped', function (event, data) {
             console.log('Timer Stopped - data = ', data);
             $scope.$apply(function () {

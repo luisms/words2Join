@@ -1,9 +1,7 @@
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<style>
+<header>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <style>
 body {
   background-image: url(words.jpg);
   background-size: cover;
@@ -19,43 +17,65 @@ body {
     left: 5px;
 }
 </style>
-<header>
-    <nav>
-      <div class="nav-wrapper indigo lighten-3">
-        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png"/></a>
+<nav>
+    <div class="nav-wrapper indigo lighten-3">
+        <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png" /></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="playGame()">Play</a></li>
+            <li><a class="dropdown-button  waves-light btn indigo darken-4" ng-click="playGame()" data-activates="dropdown1">Play</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="profile()">Profile</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="rank()">Ranking</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="logout()">Logout</a></li>
         </ul>
-      </div>
-    </nav>
+    </div>
+</nav>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li>
+        <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-click="normalGame()" >Normal mode</a>
+</li>
+<li>
+    <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-click="hardGame()">Hard mode</a>
+</li>
+</ul>
+<script>
+    $(document).ready(function () {
+        console.log("pantalla cargada");
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+        );
+    });
+</script>
 </header>
+
 <body id="bc-image">
-    <div class = "wrapper">
+    <div class="wrapper">
         <div id="content" class="col l6 s12">
-                <h2 class="black-text">Bienvenid@</h2>
-                <h5 class="black-text">words2join</h5>
-                <p class="black-text text-lighten-4">
-                    Reglas del Juego:
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <br><br><br><br><br><br><br><br><br>
-                </p>
+            <h2 class="black-text">Bienvenid@</h2>
+            <h5 class="black-text">words2join</h5>
+            <p class="black-text text-lighten-4">
+                Reglas del Juego:
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br>
+            </p>
         </div>
     </div>
 </body>
+
 <footer class="page-footer indigo lighten-3">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">words2join</h5>
                 <p class="grey-text text-lighten-4">
-                    Made by:<br>
-                        Ana Rodríguez González<br>
-                        Jose Miguel<br>
-                        Luis<br>
-                        José Ignacio<br>
+                    Made by:<br> Ana Rodríguez González<br> Jose Miguel<br> Luis
+                    <br> José Ignacio<br>
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
@@ -65,10 +85,10 @@ body {
                     <li><a class="grey-text text-lighten-3" href="#!">github</a></li>
                 </ul>
             </div>
-            </div>
-         </div>
-         <div class="footer-copyright">
-            <div class="container">
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
             © 2017 Copyright
         </div>
     </div>

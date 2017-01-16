@@ -61,12 +61,7 @@
             <div class="progress" style="height: 30px;">
 <div class="determinate" style="height: 50px; width: {{progressBar}}%;"></div>
 </div>
-<!--input id="pickedChar" class="white-text" value="" onload="randomChar()" readonly-->
 </timer>
-<div id="pickedChar" ng-init="randomChar()"></div>
-</h3>
-<h3 class="white-text">
-    Picked Char: {{pickedChar}}
 </h3>
 <table class="table" bgcolor="white">
     <tbody>
@@ -74,7 +69,7 @@
             <div class="alert alert-danger" ng-show="showError">{{error}}</div>
             <td>
                 <form ng-submit="addWord()">
-                    <input class="form-control" placeholder="Add words to play" ng-model="newWord">
+                    <input type="text" class="form-control" ng-init="randomChar()" ng-model="newWord"> 
                 </form>
             </td>
             <td>

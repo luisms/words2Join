@@ -19,7 +19,6 @@
     <div class="nav-wrapper indigo lighten-3">
         <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png" /></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <!--<li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="playGame()">Play</a></li>-->
             <li><a class="dropdown-button  waves-light btn indigo darken-4" href="#!" data-activates="dropdown1">Play</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="profile()">Profile</a></li>
             <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="rank()">Ranking</a></li>
@@ -61,12 +60,7 @@
             <div class="progress" style="height: 30px;">
 <div class="determinate" style="height: 50px; width: {{progressBar}}%;"></div>
 </div>
-<!--input id="pickedChar" class="white-text" value="" onload="randomChar()" readonly-->
 </timer>
-<div id="pickedChar" ng-init="randomChar()"></div>
-</h3>
-<h3 class="white-text">
-    Picked Char: {{pickedChar}}
 </h3>
 <table class="table" bgcolor="white">
     <tbody>

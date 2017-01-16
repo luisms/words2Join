@@ -8,6 +8,14 @@ angular.module("words2JoinAPP")
                         console.log($rootScope.username);
                         $location.path("/individualGames/" + $rootScope.username);
                 }
+                $scope.normalGame = function () {
+                        console.log($rootScope.username);
+                        $location.path("/normalGame/" + $rootScope.username);
+                }
+                $scope.hardGame = function () {
+                        console.log($rootScope.username);
+                        $location.path("/hardGame/" + $rootScope.username);
+                }
                 $scope.profile = function () {
                         console.log($rootScope.username);
                         $location.path("/profile/" + $rootScope.username);
