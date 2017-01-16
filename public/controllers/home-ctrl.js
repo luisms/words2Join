@@ -5,12 +5,16 @@ angular.module("words2JoinAPP")
                 vm.logout = $scope.logout;
                 vm.auth = auth;
                 $scope.playGame = function () {
-                        console.log($routeParams.username);
-                        $location.path("/individualGames/" + $routeParams.username);
+                        console.log($rootScope.username);
+                        $location.path("/individualGames/" + $rootScope.username);
                 }
                 $scope.profile = function () {
-                        console.log($routeParams.username);
-                        $location.path("/profile/" + $routeParams.username);
+                        console.log($rootScope.username);
+                        $location.path("/profile/" + $rootScope.username);
+                }
+                $scope.rank = function () {
+                        console.log($rootScope.username);
+                        $location.path("/ranking");
                 }
                 $scope.logout = function () {
                         if ($rootScope.isAuth0 == false) {

@@ -5,7 +5,7 @@ exports.config = {
         'backend/T01-getNotFound.js',
         'backend/T02-getUserFound.js',
         'e2e/T01-loadData.js',
-        'e2e/T02-newContact.js'
+        'e2e/T02-newGame.js'
     ]
 
 };

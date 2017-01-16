@@ -15,55 +15,64 @@ table{
     background-color: white;
 }
 </style>
+
 <header>
     <nav>
       <div class="nav-wrapper indigo lighten-3">
         <a href="#" class="brand-logo right"><img width="60%" height="60%" src="logo.png"/></a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="playGame()">Play</a></li>
-            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="profile()">Profile</a></li>
-            <li><a class="waves-effect waves-light btn indigo darken-4" href="#/ranking">Ranking</a></li>
-            <li><a class="waves-effect waves-light btn indigo darken-4" ng-click="logout()">Logout</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="playGame()">Play</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="profile()">Profile</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="rank()">Ranking</a></li>
+            <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="logout()">Logout</a></li>
         </ul>
       </div>
     </nav>
-</header>
+</head>
+
 <body>
-    <div>
-        <h1 class="white-text">Juego de {{player}}</h1>
-        <table class="table" bgcolor="white">
-            <tbody>
-                <tr ng-show="game">
-                    <td>
-                        <form ng-submit="addWord()">
-                            <input class="form-control" placeholder="Add words to play" ng-model="newWord">
-                        </form>
-                    </td>
-                    <td>
-                        <a class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Add</a>
+    <h1 class="white-text">{{player}}'s individual game</h1>
+    <h3 >
+        <timer id="countdown" interval="1000" countdown="120" ng-submit="prueba" >
+            <a class="white-text">Remaining time: {{countdown}} second{{secondsS}}</a>
+            <div class="progress progress-striped {{displayProgressActive}}" style="height: 50px;">
+                <div class="bar" style="min-width: 2em; height: 50px; width: {{progressBar}}%;"> {{ progressBar }}%
+                </div>
+            </div>
+        </timer>
+    </h3>
+    <table class="table" bgcolor="white">
+        <tbody>
+            <tr ng-show="game">
+                <div class="alert alert-danger" ng-show="showError">{{error}}</div>
+                <td>
+                    <form ng-submit="addWord()">
+                        <input class="form-control" placeholder="Add words to play" ng-model="newWord">
+                    </form>
+                </td>
+				<td>
+                        <button class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Add</button>
                         <a href="/#/" class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Cancel Game</a>
-                    </td>                                 
-                </tr>
-            </tbody>
-            <thread>
-                <tr>
-                    <th>Words</th>
-                    <th>Length</th>
-                </tr>
-            </thread>
-            <tbody>
-                <tr ng-repeat="word in words">
-                    <td>{{word}}</td>
-                    <td>{{word.length}}</td>
-                </tr>
-                <tr ng-show="end">
-                    <td><a class="waves-effect waves-light btn indigo darken-4" ng-click="endGame()">Finish</a></td>
-                </tr>
-                <tr>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                </td> 
+                <p class="white-text">Score: {{score}}</p>
+            </tr>
+        </tbody>
+        <thread>
+            <tr>
+                <th>Words</th>
+                <th>Length</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr ng-repeat="word in words">
+                <td>{{word}}</td>
+                <td>{{word.length}}</td>
+            </tr>
+            <tr ng-show="end">
+                <td><button class="waves-effect waves-light btn indigo darken-4" ng-click="endGame()">Finish</button></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 <footer class="page-footer indigo lighten-3">
     <div class="container">
@@ -93,3 +102,4 @@ table{
         </div>
     </div>
 </footer>
+
