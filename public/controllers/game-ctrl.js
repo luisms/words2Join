@@ -7,6 +7,7 @@ angular.module("words2JoinAPP")
         $scope.score = 0;
         $scope.game = true;
         $scope.end = false;
+        $scope.pickedChar = 'Null';
         $scope.addWord = function () {
             if ($scope.newWord != null) {
                 console.log("new word");
@@ -45,6 +46,11 @@ angular.module("words2JoinAPP")
             }).then(function () {
                 $location.path("/home/" + $scope.player);
             });
+        }
+        $scope.randomChar = function() {
+            var possible = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+            var pickedChar = possible.charAt(Math.floor(Math.random() * possible.length));
+            $scope.pickedChar = pickedChar;
         }
         $scope.$on('timer-stopped', function (event, data) {
             console.log('Timer Stopped - data = ', data);
