@@ -12,22 +12,17 @@ angular.module("words2JoinAPP")
                         if ($scope.listFriends.length == 0) {
                             $scope.friend = true;
                         }
+                        //Genero el campo con el mejor score de cada amigo
 						var arrayListFriends = $scope.listFriends;
-                      
 						arrayListFriends.forEach((element, index, array)=>{
-							//console.log("1p g      p    "+ p);
-                            //$scope.listFriends[p].bestScore = 0;
 							var player =  element.player;
-							console.log("Antes de get, player: " + player);
 							$http.get("/api/v1/individualRankings/" + player).then(function (listGames) {
-                            console.log("sadfasdfsafdasfasd player "+player);
                                 if(listGames.data[0]!=null)
                                     $scope.listFriends[index].bestScore = listGames.data[0].score;
                                 else
                                     $scope.listFriends[index].bestScore = 0;
                             });
 						});
-	
 
                         console.log("/api/v1/friends/" + $scope.player);
                         console.log("Cantidad de amigos: " + arrayListFriends.length);
