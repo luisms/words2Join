@@ -7,7 +7,7 @@ angular.module("words2JoinAPP")
         $scope.listFriends = [];
         $scope.friend = false;
         function refresh() {
-            $http.get("/api/v1/friends/" + $scope.player).then(function (listFriends) {
+            $http.get("/api/v1/friends/" + $scope.player).then(function (listFriends, friend) {
                 if (listFriends.data[0] != null) {
                     $scope.listFriends = listFriends.data[0].friends;
                     if ($scope.listFriends != null) {
@@ -19,13 +19,26 @@ angular.module("words2JoinAPP")
                             vm.setPage = setPage;
                             initController();
                         }
+                        //Genero el campo con el mejor score de cada amigo
+						var arrayListFriends = $scope.listFriends;
+						arrayListFriends.forEach((element, index, array)=>{
+							var player =  element.player;
+							$http.get("/api/v1/individualRankings/" + player).then(function (listGames) {
+                                if(listGames.data[0]!=null)
+                                    $scope.listFriends[index].bestScore = listGames.data[0].score;
+                                else
+                                    $scope.listFriends[index].bestScore = 0;
+                            });
+						});
+
                         console.log("/api/v1/friends/" + $scope.player);
-                        console.log("Cantidad de amigos: " + $scope.listFriends.length);
+                        console.log("Cantidad de amigos: " + arrayListFriends.length);
                     } else {
                         $scope.friend = true;
                     }
                 }
             });
+             
         }
 
         $scope.deleteFriend = function (name) {
@@ -66,11 +79,13 @@ angular.module("words2JoinAPP")
                                 console.log($http.get("/api/v1/friends/" + $scope.player));
                             });
                         }
+
+
                         //Si el usuario ya existe, se actualiza su lista de amigos:                        
                         var date = new Date();
                         $http.put("/api/v1/friends/" + $scope.player, {
                             "player": $scope.newFriend,
-                            "date": date
+							"date": date
                         }).then(function () {
                             console.log("Amigo añadido: " + $scope.newFriend);
                             refresh();
