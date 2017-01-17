@@ -4,6 +4,11 @@ angular.module("words2JoinAPP")
         var vm = this;
         vm.login = $scope.login;
         vm.auth = auth;
+        $rootScope.isLogged = false;
+        $scope.$watch( $rootScope.isLogged, function () {
+            $scope.isLogged = $rootScope.isLogged;
+            console.log("Valor logged: " + $scope.isLogged);
+        });
 
         $scope.login = function () {
             // The auth service has a signin method that
