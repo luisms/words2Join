@@ -32,5 +32,5 @@
     "passport": "^0.3.2",
     "passport-auth0": "^0.5.2",
     "serve-favicon": "^2.3.2"
-  },
-
+  }
+}
