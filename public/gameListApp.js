@@ -21,23 +21,28 @@ angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer']
                 templateUrl: "views/home.html",
                 access: { restricted: true }
             })
-            .when("/individualGames/:username", {
-                controller: "game-ctrl",
-                templateUrl: "views/game.html",
+            .when("/normalGame/:username", {
+                controller: "normalgame-ctrl",
+                templateUrl: "views/normalgame.html",
+                access: { restricted: true }
+            })
+            .when("/hardGame/:username", {
+                controller: "hardgame-ctrl",
+                templateUrl: "views/hardgame.html",
                 access: { restricted: true }
             })
             .when("/profile/:username", {
-                controller: "profile-ctrl",
+                controller: "profile-ctrl as vm",
                 templateUrl: "views/profile.html",
                 access: { restricted: true }
             })
             .when("/ranking", {
-                controller: "globalranking-ctrl",
+                controller: "globalranking-ctrl as vm",
                 templateUrl: "views/globalranking.html",
                 access: { restricted: true }
             })
             .when("/ranking/:username", {
-                controller: "individualranking-ctrl",
+                controller: "individualranking-ctrl as vm",
                 templateUrl: "views/individualranking.html",
                 access: { restricted: true }
             })
