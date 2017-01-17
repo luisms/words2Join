@@ -39,6 +39,7 @@ angular.module("words2JoinAPP")
                         if ($scope.words.length == 10) {
                             $scope.game = false;
                             $scope.end = true;
+                            document.getElementsByTagName('timer')[0].stop();
                         }
                     });
                 }
