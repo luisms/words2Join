@@ -9,7 +9,7 @@ info:
   title: words2Join
 
 paths:
-  /friends/:
+  /#/friends:
     get:
       
       description: get the list of all friends
@@ -20,9 +20,8 @@ paths:
           description: OK
           schema:
             title: arrayOfAllFriends
-            type: object
-            properties:
-              arrayOfFriends:
+            type: array
+            items:
                  $ref: "#/definitions/listas"
     
         500:
@@ -47,7 +46,7 @@ paths:
           description: Friend inserterd + "#/definitions/listas"
         500:
           description: ya existe un jugador con ese nombre
-  /friends/id:
+  /#/friends/id:
     get:
       # Describe this verb here. Note: you can use markdown
       description: Get the list of friends
@@ -97,7 +96,7 @@ paths:
           description: Deleted + numRemoved + objects.
         500:
           description: error
-  /friends/id/friend:
+  /#/friends/id/friend:
     delete:
       description: erase selected friend 
       responses:
@@ -105,7 +104,7 @@ paths:
           description: Deleted + numRemoved + objects
         500:
           description: error
-  /individualGames:
+  /#/individualGames:
     get:
       description: get all indivual games from all players
       consumes:
@@ -145,7 +144,7 @@ paths:
       responses:
         200:
           description: OK
-  /individualGames/id:
+  /#/individualGames/id:
     put:
       description: update individual game at games
       produces:
@@ -172,7 +171,7 @@ paths:
           description: Deleted " + numRemoved + " objects
         500: 
           description: error
-  /individualGames/player:
+  /#/individualGames/player:
     get:
        
       description: get all individual games from selected player
@@ -186,7 +185,7 @@ paths:
               $ref: "#/definitions/partida"
         500:
           description: error
-  /individualRankings:
+  /#/individualRankings:
     get:
       description: get global ranking
       responses:
@@ -199,7 +198,7 @@ paths:
               $ref: "#/definitions/partida"
         500:
           description: error
-  /individualRankings/iduser:
+  /#/individualRankings/iduser:
     get:
       description: get individual ranking
       responses:
@@ -212,27 +211,27 @@ paths:
               $ref: "#/definitions/partida"
         500:
           description: error
-  /singup:
+  /#/singup:
     post:
-      description: to 
+      description: to join to the services
       responses:
         200:
           description: username
-  /login:
+  /#/login:
     post:
        
-      description: asdf
+      description: to get in to the service
       responses:
         200:
           description: username
-  /logout:
+  /#/logout:
     get:
        
       description: exit from service
       responses:
         200:
           description: Logout done
-  /user/user:
+  /#/user/user:
     get:
        
       description: Get to obtain user
