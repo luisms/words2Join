@@ -1,0 +1,286 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: words2Join
+
+paths:
+  /friends/:
+    get:
+      
+      description: get the list of all friends
+      consumes:
+      - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            title: arrayOfAllFriends
+            type: object
+            properties:
+              arrayOfFriends:
+                 $ref: "#/definitions/listas"
+    
+        500:
+          description: error
+    delete:
+      description: erase all relations
+      responses:
+        200:
+          description: Deleted " + numRemoved + " objects
+    
+    post:
+      description: with this method we can create a new relation 
+      produces:
+      - application/json
+      parameters:
+      - name: addFriend
+        in: body
+        schema:
+          $ref: "#/definitions/listas"
+      responses:
+        200:
+          description: Friend inserterd + "#/definitions/listas"
+        500:
+          description: ya existe un jugador con ese nombre
+  /friends/id:
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: Get the list of friends
+      # This is array of GET operation parameters:
+      consumes:
+      - application/json
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: id
+          in: query
+          description: id user
+          required: true
+          type: string
+          
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            $ref: "#/definitions/listas"
+        500:
+          description: No hay amigos agregados
+  
+    put:
+      description: update the list of friends
+      produces:
+      - application/json
+      parameters:
+      - name: putFriend
+        in: body
+        schema:
+          $ref: "#/definitions/listas"
+      responses:
+        200:
+          description: Updated + numUpdates + objects
+        500:
+          description: error
+    
+    delete:
+      description: delete friend from list
+      responses:
+        200:
+          description: Deleted + numRemoved + objects.
+        500:
+          description: error
+  /friends/id/friend:
+    delete:
+      description: erase selected friend 
+      responses:
+        200:
+          description: Deleted + numRemoved + objects
+        500:
+          description: error
+  /individualGames:
+    get:
+      description: get all indivual games from all players
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            title: arrayOFAllGames
+            type: array
+            items:
+              $ref: "#/definitions/partida"
+        500:
+          description: error
+    post:
+      description: add a individualGame at games 
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            title: game
+            type: object
+            properties:
+              games:
+                $ref: "#/definitions/partida"
+        500:
+          description: error
+      
+      
+    delete:
+       
+      description: delete all individual games
+      responses:
+        200:
+          description: OK
+  /individualGames/id:
+    put:
+      description: update individual game at games
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Updated " + numUpdates + " objects
+          schema:
+            title: updatedGame
+            type: object
+            properties:
+              gamesUpdated:
+                $ref: "#/definitions/partida"
+            
+        409:
+          description: score null
+        500:
+          description: error
+    
+    delete:
+      description: delete selected game
+      responses:
+        200:
+          description: Deleted " + numRemoved + " objects
+        500: 
+          description: error
+  /individualGames/player:
+    get:
+       
+      description: get all individual games from selected player
+      responses:
+        200:
+          description: OK
+          schema:
+            title: arrayOFAllGames
+            type: array
+            items:
+              $ref: "#/definitions/partida"
+        500:
+          description: error
+  /individualRankings:
+    get:
+      description: get global ranking
+      responses:
+        200:
+          description: GET to obtain global ranking
+          schema:
+            title: arrayOFAllGames
+            type: array
+            items:
+              $ref: "#/definitions/partida"
+        500:
+          description: error
+  /individualRankings/iduser:
+    get:
+      description: get individual ranking
+      responses:
+        200:
+          description: GET to obtain individual ranking
+          schema:
+            title: arrayOFAllGames
+            type: array
+            items:
+              $ref: "#/definitions/partida"
+        500:
+          description: error
+  /singup:
+    post:
+      description: to 
+      responses:
+        200:
+          description: username
+  /login:
+    post:
+       
+      description: asdf
+      responses:
+        200:
+          description: username
+  /logout:
+    get:
+       
+      description: exit from service
+      responses:
+        200:
+          description: Logout done
+  /user/user:
+    get:
+       
+      description: Get to obtain user
+      responses:
+        200:
+          description: OK
+          schema:
+            title: user
+            type: string
+            
+        500:
+          description: error
+  
+definitions:
+  listas:
+    type: object
+    properties:
+      ArrayOfFriends:
+        type: object 
+        properties:
+          player:
+            type: string
+          friends:
+            type: object
+            properties:
+              player:
+                type: string
+              date:
+                type: string
+          id:
+            type: string
+            
+  partida:
+    type: object
+    properties:
+      player:
+        type: string
+      score:
+        type: integer
+      date:
+        type: string
+      id:
+        type: string
+        
+  
+  
+  
+  
+  
+  
+  
