@@ -15,6 +15,9 @@ body {
 table{
     background-color: white;
 }
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:   white;
+}
 </style>
 <header>
 <nav>
@@ -55,13 +58,13 @@ table{
 </script>
 </header>
 <body>
-    <h1 class="white-text">Perfil {{player}}</h1>
-    <table class="table" bgcolor="white">
+    <h1 class="white-text">{{player}}'s profile</h1>
+    <table class="table" style="background-color:rgba(0, 0, 0, 0);">
         <tbody>
             <tr>
                 <td>
                     <form ng-submit="addFriend()">
-                        <input class="form-control" placeholder="Add friends" ng-model="newFriend">
+                        <input class="form-control white-text" placeholder="Add friends" ng-model="newFriend">
                     </form>
                 </td>
                 <td><a class="waves-effect waves-light btn indigo darken-4" ng-click="addFriend()">Add</a>
@@ -78,7 +81,7 @@ table{
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="friend in listFriends">
+            <tr ng-repeat="friend in vm.items">
                 <td>{{friend.player}}</td>
                 <td>{{friend.date | date:'dd/MM/yyyy'}}</td>
                 <td><a class="waves-effect waves-light btn red darken-1" ng-click="deleteFriend(friend.player)">Delete friend</a></td>
@@ -86,7 +89,20 @@ table{
         </tbody>
         
     </table>
-    <h3 ng-show="friend">No hay amigos agregados.</h3>
+    <h3 class="white-text"ng-show="friend">No hay amigos agregados.</h3>
+    <!-- pager -->
+    {{vm.pager.pages.length}}
+    <ul ng-if="vm.pager.pages.length" class="pagination">
+        <li class="disabled" ng-class="{disabled:vm.pager.currentPage === 1}">
+            <a ng-click="vm.setPage(vm.pager.currentPage - 1)"><i class="material-icons">chevron_left</i></a>
+        </li>
+        <li class="waves-effect" ng-repeat="page in vm.pager.pages" ng-class="{grey:vm.pager.currentPage === page}">
+            <a class="white-text" ng-click="vm.setPage(page)">{{page}}</a>
+        </li>
+        <li class="waves-effect" ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+            <a ng-click="vm.setPage(vm.pager.currentPage + 1)"><i class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
 </body>
 <footer class="page-footer indigo lighten-3">
     <div class="container">

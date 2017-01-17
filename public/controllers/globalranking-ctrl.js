@@ -10,7 +10,6 @@ angular.module("words2JoinAPP")
                 vm.ranking = ranking.data;
                 vm.pager = {};
                 vm.setPage = setPage;
-                console.log("Valor vm: " + vm.ranking[0].player);
                 initController();
             });
         }

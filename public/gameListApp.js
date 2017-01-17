@@ -37,7 +37,7 @@ angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer']
                 access: { restricted: true }
             })
             .when("/profile/:username", {
-                controller: "profile-ctrl",
+                controller: "profile-ctrl as vm",
                 templateUrl: "views/profile.html",
                 access: { restricted: true }
             })
@@ -47,7 +47,7 @@ angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer']
                 access: { restricted: true }
             })
             .when("/ranking/:username", {
-                controller: "individualranking-ctrl",
+                controller: "individualranking-ctrl as vm",
                 templateUrl: "views/individualranking.html",
                 access: { restricted: true }
             })
