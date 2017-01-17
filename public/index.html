@@ -64,7 +64,7 @@
         <div class="nav-wrapper cyan darken-3">
             <a href="#" class="brand-logo right"><img width="80%" height="100%" src="logo.png" /></a>
             <ul id="nav-mobile" class="left hide-on-med-and-down" ng-if="isLogged != false">
-                <li><a class="dropdown-button  waves-light btn indigo darken-4" href="#!" data-activates="dropdown1">Play</a></li>
+                <li><a class="dropdown-button  waves-light btn indigo darken-4" href="#!" ng-controller="home-ctrl" data-activates="dropdown1">Play</a></li>
                 <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="profile()">Profile</a></li>
                 <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="rank()">Ranking</a></li>
                 <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="logout()">Logout</a></li>
@@ -104,10 +104,10 @@
 <div>
     <p class="grey-text text-lighten-4">
         Made by: Ana, José Miguel, Luis y José Ignacio
-        <h5 class="white-text">Links:
+        <p class="white-text">Links:
             <a class="grey-text text-lighten-3" href="#!">Documentación</a>
             <a class="grey-text text-lighten-3" href="https://github.com/luisms/words2Join">github</a>
-        </h5>
+        </p>
     </p>
 </div>
 </div>

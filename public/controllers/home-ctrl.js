@@ -1,6 +1,6 @@
 angular.module("words2JoinAPP")
         .controller("home-ctrl", function ($http, $scope, $rootScope, $routeParams, $location, auth, store) {
-                console.log("game controller");
+                console.log("home controller");
                 var vm = this;
                 vm.logout = $scope.logout;
                 vm.auth = auth;

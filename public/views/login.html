@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- load fontawesome -->
     <style>
+        html {
+            font-size: 1.5em;
+        }
+        
         #menu {
             padding-top: 10%;
         }
@@ -16,16 +20,16 @@
             <h1><span class="fa fa-sign-in"></span> Login</h1>
             <!-- show any messages that come back with authentication -->
             <div class="alert alert-danger" ng-show="error">{{error}}</div>
-            <!-- LOGIN -->
-            <div class="form-group">
+            <!-- SIGN UP FORM -->
+            <div class="input-field col s6">
+                <input type="text" class="validate" ng-model="username">
                 <label>Username</label>
-                <input class="form-control" ng-model="username">
             </div>
-            <div class="form-group">
+            <div class="input-field col s6">
                 <label>Password</label>
-                <input type="password" class="form-control" ng-model="password">
+                <input type="password" class="validate" ng-model="password">
             </div>
-            <button class="btn btn-warning btn-lg" ng-click="login()">Login</button></a>
+            <button class="btn waves-effect waves-light" ng-click="login()">Login</button>
             <hr>
             <p>Need an account? <a href="/#/signup">Sign up</a></p>
             <p>Or go <a href="/#/">back</a>.</p>
