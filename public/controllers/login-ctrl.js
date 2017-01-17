@@ -2,6 +2,8 @@ angular.module("words2JoinAPP")
     .controller("login-ctrl", function ($scope, $rootScope, $http, $routeParams, $location) {
         console.log("Login controller");
         $scope.showError = false;
+        $rootScope.isLogged = false;
+        $scope.username = "";
         $scope.login = function () {
             console.log("usuario:" + $scope.username + ", Contraseña:" + $scope.password);
             if ($scope.username == null || $scope.username.length == 0 || $scope.password == null || $scope.password.length == 0) {

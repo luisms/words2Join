@@ -6,6 +6,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <!-- Styles -->
     <!--
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
@@ -38,12 +39,82 @@
     <script src="controllers/profile-ctrl.js"></script>
     <script src="controllers/globalranking-ctrl.js"></script>
     <script src="controllers/individualranking-ctrl.js"></script>
+
+    <style>
+    body {
+        background-image: url(words.jpg);
+        background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+    }
+    .bottombar{
+        width: 100%;
+        bottom: 0;
+        position: absolute;	
+	    height: 260px;
+        padding-top: 125px;
+    }
+
+    </style>
 </head>
 
 <body>
-    <div class="container" ng-view>
-    </div>
+    <nav>
+        <div class="nav-wrapper cyan darken-3">
+            <a href="#" class="brand-logo right"><img width="80%" height="100%" src="logo.png" /></a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down" ng-if="isLogged != false">
+                <li><a class="dropdown-button  waves-light btn indigo darken-4" href="#!" ng-controller="home-ctrl" data-activates="dropdown1">Play</a></li>
+                <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="profile()">Profile</a></li>
+                <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="rank()">Ranking</a></li>
+                <li><a class="waves-effect waves-light btn indigo darken-4" ng-controller="home-ctrl" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li>
+            <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-controller="home-ctrl" ng-click="normalGame()" >Normal mode</a>
+</li>
+<li>
+    <a class="waves-effect waves-light indigo darken-4" style="color:#ffffff" ng-controller="home-ctrl" ng-click="hardGame()">Hard mode</a>
+</li>
+</ul>
+<script>
+    $(document).ready(function () {
+        console.log("pantalla cargada");
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+        );
+    });
+</script>
 
+<div class="container" ng-view>
+</div>
+<div class="bottombar">
+    <footer class="page-footer cyan darken-3">
+        <div class="container" style="text-align: center;">
+<div>
+    <p class="grey-text text-lighten-4">
+        Made by: Ana, José Miguel, Luis y José Ignacio
+        <p class="white-text">Links:
+            <a class="grey-text text-lighten-3" href="#!">Documentación</a>
+            <a class="grey-text text-lighten-3" href="https://github.com/luisms/words2Join">github</a>
+        </p>
+    </p>
+</div>
+</div>
+<div class="footer-copyright" style="height: 40px; text-align: center;"> © 2017 Copyright
+</div>
+</footer>
+</div>
 </body>
 
 </html>

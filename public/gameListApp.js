@@ -21,11 +21,6 @@ angular.module("words2JoinAPP", ["ngRoute", 'auth0', 'angular-storage', 'timer']
                 templateUrl: "views/home.html",
                 access: { restricted: true }
             })
-            .when("/individualGames/:username", {
-                controller: "game-ctrl",
-                templateUrl: "views/game.html",
-                access: { restricted: true }
-            })
             .when("/normalGame/:username", {
                 controller: "normalgame-ctrl",
                 templateUrl: "views/normalgame.html",
