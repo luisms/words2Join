@@ -10,6 +10,20 @@ var db = require('./app/initDB');
 //Init Passport
 var passport = require('passport');
 var session = require('express-session');
+//swagger
+var http = require('http');
+var swaggerTools = require('swagger-tools');
+var jsyaml = require('js-yaml');
+var spec = fs.readFileSync('./app/swagger.yaml', 'utf8');
+var swaggerDoc = jsyaml.safeLoad(spec);
+// swaggerRouter configuration
+var options = {
+  swaggerUi: '/swagger.json',
+  //controllers: './controllers',
+  useStubs: process.env.NODE_ENV === 'development' ? true : false //
+};
+
+
 
 app.set('port', (process.env.PORT || 10000));
 
@@ -35,4 +49,19 @@ require('./app/ranking')(app, apiBaseURL, dbIndGame);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
+});
+//swagger
+// Initialize the Swagger middleware
+swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+  // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
+  app.use(middleware.swaggerMetadata());
+
+  // Validate Swagger requests
+  app.use(middleware.swaggerValidator());
+
+  // Route validated requests to appropriate controller
+  app.use(middleware.swaggerRouter(options));
+
+  // Serve the Swagger documents and Swagger UI
+  app.use(middleware.swaggerUi());
 });

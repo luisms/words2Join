@@ -1,0 +1,68 @@
+<header>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <style>
+    table{
+        background-color: white;
+    }
+    </style>
+<script>
+    $(document).ready(function () {
+        console.log("pantalla cargada");
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+        );
+    });
+</script>
+</header>
+
+<body>
+    <h1 class="white-text">{{player}}'s individual game</h1>
+    <h3>
+        <timer id="countdown" interval="1000" countdown="120" ng-submit="prueba">
+            <a class="white-text">Remaining time: {{countdown}} second{{secondsS}}</a>
+            <div class="progress" style="height: 30px;">
+<div class="determinate" style="height: 50px; width: {{progressBar}}%;"></div>
+</div>
+</timer>
+</h3>
+<table class="table" bgcolor="white">
+    <tbody>
+        <tr ng-show="game">
+            <div class="alert alert-danger" ng-show="showError">{{error}}</div>
+            <td>
+                <form ng-submit="addWord()">
+                    <input type="text" class="form-control" ng-init="randomChar()" ng-model="newWord"> 
+                </form>
+            </td>
+            <td>
+                <button class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Add</button>
+                <a href="/#/" class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Cancel Game</a>
+            </td>
+            <h3 class="white-text">Score: {{score}}</h3>
+        </tr>
+    </tbody>
+    <thread>
+        <tr>
+            <th>Words</th>
+            <th>Length</th>
+        </tr>
+    </thread>
+    <tbody>
+        <tr ng-repeat="word in words">
+            <td>{{word}}</td>
+            <td>{{word.length}}</td>
+        </tr>
+        <tr ng-show="end">
+            <td><button class="waves-effect waves-light btn indigo darken-4" ng-click="endGame()">Finish</button></td>
+        </tr>
+    </tbody>
+</table>
+</body>

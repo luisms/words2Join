@@ -47,7 +47,7 @@ angular.module("words2JoinAPP")
                 $location.path("/home/" + $scope.player);
             });
         }
-        $scope.randomChar = function() {
+        $scope.randomChar = function () {
             var possible = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
             var pickedChar = possible.charAt(Math.floor(Math.random() * possible.length));
             $scope.pickedChar = pickedChar;
