@@ -14,9 +14,6 @@ paths:
       description: get the list of all friends
       consumes:
       - application/json
-      - application/xml
-      - text/xml
-      - text/html
       responses:
         200:
           description: OK
@@ -114,16 +111,32 @@ paths:
       responses:
         200:
           description: Deleted + numRemoved + objects.
+          schema:
+            $ref: "#/definitions/listas"
         500:
           description: error
           schema:
             $ref: "#/definitions/error"
-  /friends/id/friend:
+  /friends/{idfriend}/{friend}:
     delete:
-      description: erase selected friend 
+      description: erase selected friend
+      parameters:
+      - name: idfriend
+        in: path
+        required: true
+        type: string
+        description: Input a player    
+      - name: friend
+        in: path
+        required: true
+        type: string
+        description: Input a friend of the player    
+       
       responses:
         200:
-          description: Deleted + numRemoved + objects
+          description: Deleted individual friend
+          schema:
+            $ref: "#/definitions/listas"
         500:
           description: error
           schema:
@@ -180,23 +193,49 @@ paths:
           description: error
           schema:
             $ref: "#/definitions/error"
-  /individualGames/id:
+  /individualGames/{player}:
+    get:
+      description: get individual game at games
+      consumes:
+        - application/json
+      parameters:
+      - name: player
+        in: path
+        required: true
+        type: string
+        description: Input a player
+      responses:
+        200:
+          description: get idividual games at games
+          schema:
+            $ref: "#/definitions/gameList"
+        500:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
     put:
       description: update individual game at games
       produces:
         - application/json
+      parameters:
+      - name: player
+        in: path
+        required: true
+        type: string
+        description: Input a idGame
+      - name: game
+        in: body
+        schema:
+          $ref: "#/definitions/newidGame"   
       responses:
         200:
           description: Updated 1 objects
           schema:
-            title: updatedGame
-            type: object
-            properties:
-              gamesUpdated:
-                $ref: "#/definitions/partida"
-            
+            $ref: "#/definitions/gameList"
         409:
           description: score null
+          schema:
+            $ref: "#/definitions/error"
         500:
           description: error
           schema:
@@ -204,26 +243,20 @@ paths:
     
     delete:
       description: delete selected game
+      produces:
+        - application/json
+      parameters:
+      - name: player
+        in: path
+        required: true
+        type: string
+        description: Input a idGame
       responses:
         200:
           description: Deleted 1 objects
+          schema:
+            $ref: "#/definitions/gameList"
         500: 
-          description: error
-          schema:
-            $ref: "#/definitions/error"
-  /individualGames/player:
-    get:
-       
-      description: get all individual games from selected player
-      responses:
-        200:
-          description: OK
-          schema:
-            title: arrayOFAllGames
-            type: array
-            items:
-              $ref: "#/definitions/partida"
-        500:
           description: error
           schema:
             $ref: "#/definitions/error"
@@ -237,22 +270,25 @@ paths:
             title: arrayOFAllGames
             type: array
             items:
-              $ref: "#/definitions/partida"
+              $ref: "#/definitions/gameList"
         500:
           description: error
           schema:
             $ref: "#/definitions/error"
-  /individualRankings/iduser:
+  /individualRankings/{idUser}:
     get:
       description: get individual ranking
+      parameters:
+      - name: idUser
+        in: path
+        required: true
+        type: string
+        description: Input a player   
       responses:
         200:
           description: GET to obtain individual ranking
           schema:
-            title: arrayOFAllGames
-            type: array
-            items:
-              $ref: "#/definitions/partida"
+              $ref: "#/definitions/gameList"
         500:
           description: error
           schema:
@@ -339,6 +375,18 @@ definitions:
                 type: string       
             
   partida:
+    type: object
+    properties:
+      player:
+        type: string
+      score:
+        type: integer
+      date:
+        type: string
+      id:
+        type: string
+
+  newidGame:
     type: object
     properties:
       player:
