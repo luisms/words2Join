@@ -296,19 +296,28 @@ paths:
   /singup:
     post:
       description: to join to the services
-      operationId: singup
+      produces:
+        - application/json  
+    
       responses:
         200:
           description: username
+          schema:
+            $ref: "#/definitions/user"
+        500:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
   /login:
     post:
       description: to get in to the service
-      operationId: login
+      produces:
+        - application/json
       responses:
         200:
           description: login done
-          schema:
-            $ref: "#/definitions/user"   
+        
+          
 
   /logout:
     get:
@@ -359,19 +368,21 @@ definitions:
         type: string
       date:
         type: string
-
+      
+  
   newPlayer:
     type: object
     properties:
       player:
         type: string
       friends:
-        type: object
+        type : object
         properties:
           player:
             type: string
           date:
             type: string
+      
 
   gameList:
     type: object
@@ -422,7 +433,7 @@ definitions:
     properties:
       username: 
         type: string
-      passport: 
+      password: 
         type: string
   
   
