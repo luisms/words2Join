@@ -5,6 +5,9 @@
     table{
         background-color: white;
     }
+    .waves-effect {
+        z-index: 0;
+    }
     </style>
 <script>
     $(document).ready(function () {
@@ -36,7 +39,7 @@
 <table class="table" bgcolor="white">
     <tbody>
         <tr ng-show="game">
-            <div class="alert alert-danger" ng-show="showError">{{error}}</div>
+            <div class="card-panel red lighten-4 red-text" ng-show="showError">{{error}}</div>
             <td>
                 <form ng-submit="addWord()">
                     <input class="form-control" placeholder="Add words to play" ng-model="newWord">
@@ -47,6 +50,7 @@
                 <a href="/#/" class="waves-effect waves-light btn indigo darken-4" ng-click="addWord()">Cancel Game</a>
             </td>
             <h3 class="white-text">Score: {{score}}</h3>
+            <h3 class="white-text">Words remaining: {{10-words.length}}</h3>
         </tr>
     </tbody>
     <thread>
