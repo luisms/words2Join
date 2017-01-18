@@ -36,12 +36,12 @@ paths:
         description: Friend input
         required: true
         schema:
-          $ref: "#/definitions/newPlayer"
+          $ref: "#/definitions/listas"
       responses:
         200:
           description: Friend inserted
           schema:
-            $ref: "#/definitions/listas"
+            $ref: "#/definitions/newFriend"
         500:
           description: ya existe un jugador con ese nombre
           schema:
@@ -316,9 +316,7 @@ paths:
       responses:
         200:
           description: login done
-        
-          
-
+      
   /logout:
     get:
        
@@ -347,20 +345,17 @@ definitions:
   listas:
     type: object
     properties:
-      ArrayOfFriends:
-        type: object 
+      player:
+        type: string
+      friends:
+        type: object
         properties:
           player:
             type: string
-          friends:
-            type: object
-            properties:
-              player:
-                type: string
-              date:
-                type: string
-          id:
+          date:
             type: string
+      id:
+        type: string
   newFriend:
     type: object
     properties:
