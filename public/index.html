@@ -47,15 +47,25 @@
         -moz-background-size: cover;
         -webkit-background-size: cover;
         -o-background-size: cover;
+        overflow: auto;
+        padding-bottom: 120px;
     }
-    .bottombar{
+    footer{
         width: 100%;
+        position: fixed;
         bottom: 0;
-        position: absolute;	
-	    height: 260px;
-        padding-top: 125px;
+	    height: 80px;
+        padding-top: 20px;
     }
-
+    #copyright{
+        position: relative;
+        padding-bottom: 3%;
+    }
+    #links{
+        position: relative;
+        padding-bottom: 3px;
+        padding-top: 3px;
+    }
     </style>
 </head>
 
@@ -98,23 +108,17 @@
 
 <div class="container" ng-view>
 </div>
-<div class="bottombar">
-    <footer class="page-footer cyan darken-3">
-        <div class="container" style="text-align: center;">
-<div>
-    <p class="grey-text text-lighten-4">
-        Made by: Ana, José Miguel, Luis y José Ignacio
-        <p class="white-text">Links:
+</body>
+<footer class="page-footer cyan darken-3">
+        <div id="links" style="text-align: center;">
+            <a class="grey-text text-lighten-3">Links:</a>
             <a class="grey-text text-lighten-3" href="#!">Documentación</a>
             <a class="grey-text text-lighten-3" href="https://github.com/luisms/words2Join">github</a>
-        </p>
-    </p>
-</div>
-</div>
-<div class="footer-copyright" style="height: 40px; text-align: center;"> © 2017 Copyright
-</div>
+            
+        </div>
+        <div id="copyright" class="footer-copyright" style="height: 40px; text-align: center;"> © 2017 Copyright
+        </div>
 </footer>
-</div>
-</body>
+
 
 </html>
