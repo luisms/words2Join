@@ -36,12 +36,12 @@ paths:
         description: Friend input
         required: true
         schema:
-          $ref: "#/definitions/listas"
+          $ref: "#/definitions/newPlayer"
       responses:
         200:
           description: Friend inserted
           schema:
-            $ref: "#/definitions/newFriend"
+            $ref: "#/definitions/listas"
         500:
           description: ya existe un jugador con ese nombre
           schema:
@@ -296,15 +296,19 @@ paths:
   /singup:
     post:
       description: to join to the services
+      operationId: singup
       responses:
         200:
           description: username
   /login:
     post:
       description: to get in to the service
+      operationId: login
       responses:
         200:
           description: login done
+          schema:
+            $ref: "#/definitions/user"   
 
   /logout:
     get:
@@ -355,6 +359,19 @@ definitions:
         type: string
       date:
         type: string
+
+  newPlayer:
+    type: object
+    properties:
+      player:
+        type: string
+      friends:
+        type: object
+        properties:
+          player:
+            type: string
+          date:
+            type: string
 
   gameList:
     type: object
